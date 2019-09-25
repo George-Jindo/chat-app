@@ -19,14 +19,12 @@ class App extends Component {
     };
 
     onSearch = e => {
-        e.preventDefault();
-
         const { userName } = this.state;
 
         if (userName === '') {
             return;
         }
-        console.log(userName);
+        console.log('logging from onSearch');
     };
 
     componentDidMount() {
@@ -55,7 +53,7 @@ class App extends Component {
                                 {' '}
                                 <p>Enter a Username to begin chatting!</p>
                                 <br></br>
-                                <form onSubmit={this.onSearch}>
+                                <form>
                                     <div className='form-group'>
                                         <input
                                             type='text'
@@ -71,6 +69,7 @@ class App extends Component {
                                             className='btn-modal'
                                             onClick={() => {
                                                 console.log('modal closed ');
+                                                this.onSearch();
                                                 close();
                                             }}
                                         >
@@ -88,52 +87,5 @@ class App extends Component {
         );
     }
 }
-
-/*function App() {
-    return (
-        <div className='App'>
-            <Popup
-                trigger={<button className='button'> Open Modal </button>}
-                modal
-            >
-                {close => (
-                    <div className='modal'>
-                        <a className='close' onClick={close}>
-                            &times;
-                        </a>
-                        <div className='header'> Welcome to Chatterbox! </div>
-                        <div className='content'>
-                            {' '}
-                            Enter a Username to begin chatting!
-                            <form method='POST'>
-                                <div className='form-group'>
-                                    <input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder='Username'
-                                    ></input>
-                                </div>
-                            </form>
-                        </div>
-                        <div className='actions'>
-                            <button
-                                type='submit'
-                                className='btn-modal'
-                                onClick={() => {
-                                    console.log('modal closed ');
-                                    close();
-                                }}
-                            >
-                                Enter Chat
-                            </button>
-                        </div>
-                    </div>
-                )}
-            </Popup>
-            <Navbar />
-            <Main />
-        </div>
-    );
-}*/
 
 export default App;
