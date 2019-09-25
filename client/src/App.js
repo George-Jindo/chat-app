@@ -8,9 +8,26 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            isLoggedIn: false
+            isLoggedIn: false,
+            userName: ''
         };
     }
+
+    onChange = e => {
+        this.setState({ userName: e.target.value });
+        console.log(e.target.value);
+    };
+
+    onSearch = e => {
+        e.preventDefault();
+
+        const { userName } = this.state;
+
+        if (userName === '') {
+            return;
+        }
+        console.log(userName);
+    };
 
     componentDidMount() {
         console.log('First this called');
@@ -38,27 +55,29 @@ class App extends Component {
                                 {' '}
                                 <p>Enter a Username to begin chatting!</p>
                                 <br></br>
-                                <form method='POST'>
+                                <form onSubmit={this.onSearch}>
                                     <div className='form-group'>
                                         <input
                                             type='text'
                                             className='form-control'
                                             placeholder='Username'
+                                            onChange={this.onChange}
                                         ></input>
                                     </div>
+
+                                    <div className='actions'>
+                                        <button
+                                            type='button'
+                                            className='btn-modal'
+                                            onClick={() => {
+                                                console.log('modal closed ');
+                                                close();
+                                            }}
+                                        >
+                                            Enter Chat
+                                        </button>
+                                    </div>
                                 </form>
-                            </div>
-                            <div className='actions'>
-                                <button
-                                    type='submit'
-                                    className='btn-modal'
-                                    onClick={() => {
-                                        console.log('modal closed ');
-                                        close();
-                                    }}
-                                >
-                                    Enter Chat
-                                </button>
                             </div>
                         </div>
                     )}
