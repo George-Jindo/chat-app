@@ -24,7 +24,10 @@ class App extends Component {
         if (userName === '') {
             return;
         }
+
         console.log('logging from onSearch');
+
+        localStorage.setItem('username', userName);
     };
 
     componentDidMount() {
@@ -58,8 +61,10 @@ class App extends Component {
                                         <input
                                             type='text'
                                             className='form-control'
+                                            name='username'
                                             placeholder='Username'
                                             onChange={this.onChange}
+                                            required
                                         ></input>
                                     </div>
 

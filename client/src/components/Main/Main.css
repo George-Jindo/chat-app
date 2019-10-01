@@ -4,9 +4,11 @@
     /*   grid-template-rows: auto 25px auto 25px auto 25px auto 25px auto 25px auto; */
     grid-column-gap: 5px;
     grid-row-gap: 5px;
+    background-color: rgb(197, 197, 197);
 }
+
 .grid {
-    background-color: #444;
+    /*background-color: #444;*/
     color: #fff;
     padding: 25px;
     font-size: 3rem;
@@ -14,25 +16,43 @@
 .users {
     grid-column: 1 / 2;
     grid-row-start: 1 / 2;
-    background-color: #d5c9e2;
     min-height: 700px;
+    background-color: rgba(0, 147, 179, 0.9);
+    /*box-shadow: blur(10px);*/
 }
 .search_user {
     grid-column: 1 / 2;
     grid-row: 2 / 2;
     min-height: 125px;
-    background-color: #a0c263;
+    background-color: rgba(0, 147, 179, 0.9);
 }
 .messages {
     grid-column: 2 / 4;
     grid-row: 1 / 2;
     min-height: 700px;
-    background-color: #f5c531;
+    background-color: #ebebeb;
+    color: #000;
     min-width: 700px;
 }
+
+.incoming {
+    font-size: 1rem;
+    margin: auto;
+}
+
+ul {
+    list-style: none;
+}
+
 .send_message {
     grid-column: 2 / 4;
     grid-row: 2 / 2;
     min-height: 125px;
     background-color: #898989;
+}
+
+.send_field {
+    position: absolute;
+    min-width: 66%;
+    min-height: 60px;
 }
