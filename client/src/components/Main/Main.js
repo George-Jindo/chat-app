@@ -18,13 +18,18 @@ const main = props => (
             </div>
         </div>
         <div className='send_message grid'>
-            <input
-                type='text'
-                className='send_field'
-                name='username'
-                placeholder='Start typing to chat'
-                required
-            ></input>
+            <form className='form-inline'>
+                <input
+                    type='text'
+                    className='send_field'
+                    name='username'
+                    placeholder='Start typing to chat'
+                    required
+                ></input>
+                <button type='submit' className='btn-message'>
+                    Enter
+                </button>
+            </form>
         </div>
     </div>
 );

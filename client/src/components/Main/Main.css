@@ -27,7 +27,7 @@
     background-color: rgba(0, 147, 179, 0.9);
 }
 .messages {
-    grid-column: 2 / 4;
+    grid-column: 2 / 3;
     grid-row: 1 / 2;
     min-height: 700px;
     background-color: #ebebeb;
@@ -45,14 +45,60 @@ ul {
 }
 
 .send_message {
-    grid-column: 2 / 4;
+    grid-column: 2 / 3;
     grid-row: 2 / 2;
     min-height: 125px;
     background-color: #898989;
 }
 
-.send_field {
-    position: absolute;
-    min-width: 66%;
-    min-height: 60px;
+.form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
 }
+
+.form-inline input {
+    vertical-align: middle;
+    margin: 5px 10px 5px 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    min-width: 70%;
+}
+
+.form-inline button {
+    padding: 10px 20px;
+    background-color: dodgerblue;
+    border: 1px solid #ddd;
+    color: white;
+}
+
+.form-inline button:hover {
+    background-color: royalblue;
+}
+
+@media (max-width: 1024px) {
+    .form-inline input {
+        margin: 10px 0;
+    }
+
+    .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/*@media screen and (max-width: 1024px) {
+    .send_field {
+        position: absolute;
+        min-width: 20%;
+        box-sizing: border-box;
+        font-size: 1rem;
+    }
+    .send_message {
+        grid-column: 2 / 4;
+        grid-row: 2 / 2;
+        min-height: 125px;
+        background-color: #898989;
+    }
+}*/
