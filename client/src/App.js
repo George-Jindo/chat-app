@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Styles.css';
 import Navbar from './components/Navbar/Navbar';
+import UserModal from './components/Modals/UserModal';
 
 class App extends Component {
     constructor() {
@@ -31,6 +32,7 @@ class App extends Component {
     render() {
         return (
             <div className='App'>
+                <UserModal />
                 <Navbar />
             </div>
         );
