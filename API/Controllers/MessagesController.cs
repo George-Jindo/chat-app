@@ -15,6 +15,9 @@ namespace API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+
+
+
             var renderMessages = new List<string>();
             try
             {
@@ -25,7 +28,7 @@ namespace API.Controllers
                 NpgsqlDataReader dataReader = command.ExecuteReader();
                 for (int i = 0; dataReader.Read(); i++)
                 {
-                    renderMessages.Add(dataReader[0].ToString() + "," + dataReader[1].ToString() + "," + dataReader[2].ToString() + "\r\n");
+                    renderMessages.Add(dataReader[1].ToString() + "," + dataReader[2].ToString());
                 }
                 connection.Close();
                 return renderMessages;
