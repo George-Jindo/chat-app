@@ -9,9 +9,9 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class MessagesController : ControllerBase
     {
-        // GET api/values
+        // GET api/messages
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
