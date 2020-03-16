@@ -18,7 +18,7 @@ namespace API.Controllers
             var renderMessages = new List<string>();
             try
             {
-                string connstring = "Server=localhost; Port=5432; User Id=gjindo; Password=CamaroZ28; Database='Chatterbox.dev';";
+                string connstring = "Server=localhost; Port=5432; User Id=gjindo; Password=CamaroZ28; Database=chatterbox;";
                 NpgsqlConnection connection = new NpgsqlConnection(connstring);
                 connection.Open();
                 NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM public.messages", connection);
