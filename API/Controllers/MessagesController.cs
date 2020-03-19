@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Chatterbox.Models;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 
@@ -13,12 +14,12 @@ namespace API.Controllers
     {
         // GET api/messages
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<Message>> Get()
         {
 
 
 
-            var renderMessages = new List<string>();
+            var renderMessages = new List<Message>();
             try
             {
                 string connstring = "Server=localhost; Port=5432; User Id=gjindo; Password=CamaroZ28; Database=chatterbox;";
@@ -27,8 +28,12 @@ namespace API.Controllers
                 NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM public.messages", connection);
                 NpgsqlDataReader dataReader = command.ExecuteReader();
                 for (int i = 0; dataReader.Read(); i++)
+
                 {
-                    renderMessages.Add(dataReader[1].ToString() + "," + dataReader[2].ToString());
+
+                    //renderMessages.Add(dataReader[Message].ToString() + "," + dataReader[1].ToString() + "," + dataReader[2].ToString() + "\r\n");
+                    renderMessages.Add(Convert.ToString(dataReader["Message Name"]));
+
                 }
                 connection.Close();
                 return renderMessages;
@@ -39,6 +44,15 @@ namespace API.Controllers
                 throw;
             }
         }
+
+        public class Message
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Text { get; set; }
+
+        }
+
 
         // GET api/values/5
         [HttpGet("{id}")]
