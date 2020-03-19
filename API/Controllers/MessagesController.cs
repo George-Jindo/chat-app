@@ -32,7 +32,12 @@ namespace API.Controllers
                 {
 
                     //renderMessages.Add(dataReader[Message].ToString() + "," + dataReader[1].ToString() + "," + dataReader[2].ToString() + "\r\n");
-                    renderMessages.Add(Convert.ToString(dataReader["Message Name"]));
+                    renderMessages.Add(new Message
+                    {
+                        Name = Convert.ToString(dataReader[1].ToString()),
+                        Text = Convert.ToString(dataReader[2].ToString()),
+                        Date = Convert.ToString(dataReader[3].ToString())
+                    });
 
                 }
                 connection.Close();
@@ -43,14 +48,6 @@ namespace API.Controllers
                 Console.WriteLine(msg.ToString());
                 throw;
             }
-        }
-
-        public class Message
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Text { get; set; }
-
         }
 
 
