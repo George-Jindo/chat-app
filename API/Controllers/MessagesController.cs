@@ -34,9 +34,9 @@ namespace API.Controllers
                     //renderMessages.Add(dataReader[Message].ToString() + "," + dataReader[1].ToString() + "," + dataReader[2].ToString() + "\r\n");
                     renderMessages.Add(new Message
                     {
-                        Name = Convert.ToString(dataReader[1].ToString()),
-                        Text = Convert.ToString(dataReader[2].ToString()),
-                        Date = Convert.ToString(dataReader[3].ToString())
+                        Name = Convert.ToString(dataReader[1]),
+                        Text = Convert.ToString(dataReader[2]),
+                        Date = Convert.ToString(dataReader[3])
                     });
 
                 }
