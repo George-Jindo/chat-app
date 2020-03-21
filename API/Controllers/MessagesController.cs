@@ -34,9 +34,10 @@ namespace API.Controllers
                     //renderMessages.Add(dataReader[Message].ToString() + "," + dataReader[1].ToString() + "," + dataReader[2].ToString() + "\r\n");
                     renderMessages.Add(new Message
                     {
-                        Name = Convert.ToString(dataReader[1]),
-                        Text = Convert.ToString(dataReader[2]),
-                        Date = Convert.ToString(dataReader[3])
+                        Id = Convert.ToInt16(dataReader[0]),
+                        User_Name = Convert.ToString(dataReader[1]),
+                        User_Text = Convert.ToString(dataReader[2]),
+                        Created_At = Convert.ToString(dataReader[3])
                     });
 
                 }

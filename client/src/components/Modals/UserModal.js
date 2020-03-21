@@ -2,7 +2,27 @@ import React, { Component } from 'react';
 import { Button, Header, Modal, Icon } from 'semantic-ui-react';
 
 class UserModal extends Component {
-    state = { open: true };
+    state = {
+        open: true,
+        username: ''
+    };
+
+    onChange = e => {
+        this.setState({ username: e.target.value });
+        console.log(e.target.value);
+    };
+
+    onSearch = e => {
+        const { username } = this.state;
+
+        if (username === '') {
+            return;
+        }
+
+        console.log('logging from onSearch');
+
+        localStorage.setItem('username', username);
+    };
 
     show = dimmer => () => this.setState({ dimmer, open: true });
     close = () => this.setState({ open: false });
@@ -29,6 +49,9 @@ class UserModal extends Component {
                                     <input
                                         type='text'
                                         placeholder='Enter username'
+                                        name='username'
+                                        onChange={this.onChange}
+                                        required
                                     ></input>
                                 </fragment>
                             </fragment>
@@ -40,7 +63,11 @@ class UserModal extends Component {
                             icon='checkmark'
                             labelPosition='right'
                             content='Let me in!'
-                            onClick={this.close}
+                            onClick={() => {
+                                console.log('modal closed ');
+                                this.onSearch();
+                                this.close();
+                            }}
                         />
                     </Modal.Actions>
                 </Modal>
