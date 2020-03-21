@@ -1,34 +1,79 @@
 import React, { Component } from 'react';
 import { Button, Header, Modal, Icon } from 'semantic-ui-react';
 
+const formValid = ({ formError, ...rest }) => {
+    let valid = true;
+
+    Object.values(formError).forEach(val => {
+        val.length > 0 && (valid = false);
+    });
+
+    Object.values(rest).forEach(val => {
+        val === null && (valid = false);
+    });
+    return valid;
+};
+
 class UserModal extends Component {
-    state = {
-        open: true,
-        username: ''
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            open: true,
+            userName: null,
+            formError: {
+                userName: ''
+            }
+        };
+    }
 
     onChange = e => {
-        this.setState({ username: e.target.value });
-        console.log(e.target.value);
+        e.preventDefault();
+
+        const { name, value } = e.target;
+        let formError = this.state.formError;
+
+        switch (name) {
+            case 'userName':
+                formError.userName =
+                    value.length < 3 ? 'minimum 3 characters required' : '';
+                break;
+            default:
+        }
+
+        this.setState({ formError, [name]: value }, () =>
+            console.log(this.state)
+        );
     };
 
     onSearch = e => {
-        const { username } = this.state;
+        const { userName } = this.state;
 
-        if (username === '') {
+        if (userName === '') {
             return;
         }
 
-        console.log('logging from onSearch');
+        localStorage.setItem('userName', userName);
+    };
 
-        localStorage.setItem('username', username);
+    onSubmit = e => {
+        e.preventDefault();
+
+        if (formValid(this.state.formError)) {
+            console.log(`
+            --SUBMITTING--
+            User Name: ${this.state.userName}
+            `);
+        } else {
+            console.error('FORM INVALID - DISPLAY ERROR MESSAGE');
+        }
     };
 
     show = dimmer => () => this.setState({ dimmer, open: true });
     close = () => this.setState({ open: false });
 
     render() {
-        const { open, dimmer } = this.state;
+        const { open, dimmer, formError } = this.state;
 
         return (
             <div>
@@ -43,30 +88,38 @@ class UserModal extends Component {
                         <Icon name='comments' size='massive' />
                         <Modal.Description>
                             <Header>Enter a username to begin</Header>
-                            <fragment class='ui form'>
-                                <fragment class='required field'>
-                                    <label>Username:</label>
-                                    <input
-                                        type='text'
-                                        placeholder='Enter username'
-                                        name='username'
-                                        onChange={this.onChange}
-                                        required
-                                    ></input>
-                                </fragment>
-                            </fragment>
+                            <div className='ui form'>
+                                <div className='required field'>
+                                    <form
+                                        className='form-inside-input'
+                                        onSubmit={this.onSubmit}
+                                        noValidate
+                                    >
+                                        <label>Username:</label>
+                                        <input
+                                            type='text'
+                                            placeholder='Enter username'
+                                            name='userName'
+                                            onChange={this.onChange}
+                                            noValidate
+                                        ></input>
+                                        {formError.userName.length > 0 && (
+                                            <span>{formError.userName}</span>
+                                        )}
+                                    </form>
+                                </div>
+                            </div>
                         </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
                         <Button
+                            type='submit'
                             positive
                             icon='checkmark'
                             labelPosition='right'
                             content='Let me in!'
                             onClick={() => {
-                                console.log('modal closed ');
                                 this.onSearch();
-                                this.close();
                             }}
                         />
                     </Modal.Actions>
