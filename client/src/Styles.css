@@ -35,3 +35,20 @@ body {
 span {
     color: red;
 }
+
+button.ui.icon.positive.right.labeled.button {
+    float: right;
+    margin-top: 5px;
+}
+
+input.input.input:invalid {
+    border: 5px solid #f50000;
+}
+
+form:invalid {
+    border: 5px solid #f50000;
+}
+
+.error {
+    border: 5px solid #f50000;
+}

@@ -59,13 +59,17 @@ class UserModal extends Component {
     onSubmit = e => {
         e.preventDefault();
 
-        if (formValid(this.state.formError)) {
-            console.log(`
-            --SUBMITTING--
-            User Name: ${this.state.userName}
-            `);
+        if (formValid(this.state)) {
+            // console.log(`
+            // --SUBMITTING--
+            // User Name: ${this.state.userName}
+            // `);
+            setTimeout(() => alert('It has been 3 seconds'), 3000);
+            this.close();
         } else {
-            console.error('FORM INVALID - DISPLAY ERROR MESSAGE');
+            alert(
+                'Error message: Please enter a username with a minimum of 3 characters'
+            );
         }
     };
 
@@ -97,6 +101,11 @@ class UserModal extends Component {
                                     >
                                         <label>Username:</label>
                                         <input
+                                            className={
+                                                formError.userName.length > 0
+                                                    ? 'error'
+                                                    : null
+                                            }
                                             type='text'
                                             placeholder='Enter username'
                                             name='userName'
@@ -106,23 +115,22 @@ class UserModal extends Component {
                                         {formError.userName.length > 0 && (
                                             <span>{formError.userName}</span>
                                         )}
+
+                                        <Button
+                                            type='submit'
+                                            positive
+                                            icon='checkmark'
+                                            labelPosition='right'
+                                            content='Let me in!'
+                                            onClick={() => {
+                                                this.onSearch();
+                                            }}
+                                        />
                                     </form>
                                 </div>
                             </div>
                         </Modal.Description>
                     </Modal.Content>
-                    <Modal.Actions>
-                        <Button
-                            type='submit'
-                            positive
-                            icon='checkmark'
-                            labelPosition='right'
-                            content='Let me in!'
-                            onClick={() => {
-                                this.onSearch();
-                            }}
-                        />
-                    </Modal.Actions>
                 </Modal>
             </div>
         );
