@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 import { Button, Header, Modal, Icon } from 'semantic-ui-react';
 
 const formValid = ({ formError, ...rest }) => {
@@ -61,12 +62,12 @@ class UserModal extends Component {
         e.preventDefault();
 
         if (formValid(this.state)) {
-            // console.log(`
-            // --SUBMITTING--
-            // User Name: ${this.state.userName}
-            // `);
-            alert('Your username is: ' + this.input.value);
-            this.close();
+            Axios.post('http://localhost:5000/api/authenticate').then(res => {
+                if (res.status === 200) {
+                    alert('Your username is: ' + this.input.value);
+                    this.close();
+                }
+            });
         } else {
             alert(
                 'Error message: Please enter a username with a minimum of 3 characters'
