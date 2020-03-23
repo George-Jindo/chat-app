@@ -54,6 +54,7 @@ class UserModal extends Component {
         }
 
         localStorage.setItem('userName', userName);
+        console.log(localStorage.getItem('userName'));
     };
 
     onSubmit = e => {
@@ -64,7 +65,7 @@ class UserModal extends Component {
             // --SUBMITTING--
             // User Name: ${this.state.userName}
             // `);
-            setTimeout(() => alert('It has been 3 seconds'), 3000);
+            alert('Your username is: ' + this.input.value);
             this.close();
         } else {
             alert(
@@ -110,6 +111,7 @@ class UserModal extends Component {
                                             placeholder='Enter username'
                                             name='userName'
                                             onChange={this.onChange}
+                                            ref={input => (this.input = input)}
                                             noValidate
                                         ></input>
                                         {formError.userName.length > 0 && (
