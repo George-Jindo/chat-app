@@ -62,12 +62,18 @@ class UserModal extends Component {
         e.preventDefault();
 
         if (formValid(this.state)) {
-            Axios.post('http://localhost:5000/api/authenticate').then(res => {
-                if (res.status === 200) {
-                    alert('Your username is: ' + this.input.value);
-                    this.close();
+            let body = {
+                userName: 'Jen'
+            };
+
+            Axios.post('http://localhost:5000/api/authenticate', body).then(
+                res => {
+                    if (res.status === 404) {
+                        alert('Your username is: ' + this.input.value);
+                        this.close();
+                    }
                 }
-            });
+            );
         } else {
             alert(
                 'Error message: Please enter a username with a minimum of 3 characters'

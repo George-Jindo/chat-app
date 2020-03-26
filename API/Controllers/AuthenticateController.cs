@@ -16,28 +16,12 @@ namespace API.Controllers
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
-        public string Get()
+
+        [HttpGet]
+        public ActionResult<string> Get()
         {
-            return "Hello from AuthenticateController";
+            return "Jen";
         }
 
-        // POST api/authenticate
-        [HttpPost]
-        static async Task Main(string[] args)
-        {
-            var user = new User();
-            user.User_Name = "Mike Test";
-
-            var json = JsonConvert.SerializeObject(user);
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var url = "http://localhost:5000/api/authenticate";
-            using var client = new HttpClient();
-
-            var response = await client.PostAsync(url, data);
-
-            string result = response.Content.ReadAsStringAsync().Result;
-            Console.WriteLine(result);
-        }
     }
 }
