@@ -68,9 +68,11 @@ class UserModal extends Component {
 
             Axios.post('http://localhost:5000/api/authenticate', body).then(
                 res => {
-                    if (res.status === 404) {
+                    if (res.data.isSuccessful === true) {
                         alert('Your username is: ' + this.input.value);
                         this.close();
+                    } else {
+                        alert('Error Message: ' + res.data.ErrorMessage);
                     }
                 }
             );
@@ -103,6 +105,7 @@ class UserModal extends Component {
                             <div className='ui form'>
                                 <div className='required field'>
                                     <form
+                                        action='Main.js'
                                         className='form-inside-input'
                                         onSubmit={this.onSubmit}
                                         noValidate

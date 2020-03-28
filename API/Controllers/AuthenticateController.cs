@@ -17,11 +17,22 @@ namespace API.Controllers
     public class AuthenticateController : ControllerBase
     {
 
-        [HttpGet]
-        public ActionResult<string> Get()
+        [HttpPost]
+        public ActionResult<Response> Get()
         {
-            return "Jen";
+            return new Response
+            {
+                IsSuccessful = true,
+                Id = 1,
+                ErrorMessage = "Username not found"
+            };
         }
+    }
 
+    public class Response
+    {
+        public bool IsSuccessful { get; set; }
+        public int Id { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }
