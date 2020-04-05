@@ -26,6 +26,7 @@ class UserModal extends Component {
                 userName: ''
             }
         };
+        this.onChange = this.onChange.bind(this);
     }
 
     onChange = e => {

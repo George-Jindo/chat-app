@@ -1,8 +1,33 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Button, Comment, Form, Header, TextArea } from 'semantic-ui-react';
 import './ChatScreen.css';
+import UserModal from '../Modals/UserModal';
 
 class ChatScreen extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    onClickHandler = e => {
+        e.preventDefault();
+
+        axios
+            .post('http://localhost:5000/api/messages')
+            .then(res => {
+                if (res.status === 201) {
+                    axios.get('api/messages').then(res => {
+                        this.setState({
+                            messages: res.data
+                        });
+                    });
+                }
+            })
+            .catch(error => {
+                console.log('Error Message: ' + error);
+            });
+    };
+
     render() {
         return (
             <div>
@@ -13,11 +38,11 @@ class ChatScreen extends Component {
 
                     <Comment>
                         <Comment.Content>
-                            <Comment.Author as='a'>Matt</Comment.Author>
+                            <Comment.Author as='a'>John</Comment.Author>
                             <Comment.Metadata>
-                                <div>Today at 5:42PM</div>
+                                <div>Today at 5:30PM</div>
                             </Comment.Metadata>
-                            <Comment.Text>How artistic!</Comment.Text>
+                            <Comment.Text>Whoa this is cool!</Comment.Text>
                         </Comment.Content>
                     </Comment>
 
@@ -61,6 +86,7 @@ class ChatScreen extends Component {
                             icon='edit'
                             primary
                             style={{ marginTop: 5 }}
+                            onClick={this.onClickHandler}
                         />
                     </Form>
                 </Comment.Group>
