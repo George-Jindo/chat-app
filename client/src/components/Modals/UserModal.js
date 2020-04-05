@@ -5,11 +5,11 @@ import { Button, Header, Modal, Icon } from 'semantic-ui-react';
 const formValid = ({ formError, ...rest }) => {
     let valid = true;
 
-    Object.values(formError).forEach(val => {
+    Object.values(formError).forEach((val) => {
         val.length > 0 && (valid = false);
     });
 
-    Object.values(rest).forEach(val => {
+    Object.values(rest).forEach((val) => {
         val === null && (valid = false);
     });
     return valid;
@@ -23,13 +23,13 @@ class UserModal extends Component {
             open: true,
             userName: null,
             formError: {
-                userName: ''
-            }
+                userName: '',
+            },
         };
         this.onChange = this.onChange.bind(this);
     }
 
-    onChange = e => {
+    onChange = (e) => {
         e.preventDefault();
 
         const { name, value } = e.target;
@@ -46,9 +46,10 @@ class UserModal extends Component {
         this.setState({ formError, [name]: value }, () =>
             console.log(this.state)
         );
+        this.props.onChange(this.state);
     };
 
-    onSearch = e => {
+    onSearch = (e) => {
         const { userName } = this.state;
 
         if (userName === '') {
@@ -59,16 +60,16 @@ class UserModal extends Component {
         console.log(localStorage.getItem('userName'));
     };
 
-    onSubmit = e => {
+    onSubmit = (e) => {
         e.preventDefault();
 
         if (formValid(this.state)) {
             let body = {
-                userName: 'Jen'
+                userName: 'Jen',
             };
 
             Axios.post('http://localhost:5000/api/authenticate', body).then(
-                res => {
+                (res) => {
                     if (res.data.isSuccessful === true) {
                         alert('Your username is: ' + this.input.value);
                         this.close();
@@ -84,7 +85,7 @@ class UserModal extends Component {
         }
     };
 
-    show = dimmer => () => this.setState({ dimmer, open: true });
+    show = (dimmer) => () => this.setState({ dimmer, open: true });
     close = () => this.setState({ open: false });
 
     render() {
@@ -122,7 +123,9 @@ class UserModal extends Component {
                                             placeholder='Enter username'
                                             name='userName'
                                             onChange={this.onChange}
-                                            ref={input => (this.input = input)}
+                                            ref={(input) =>
+                                                (this.input = input)
+                                            }
                                             noValidate
                                         ></input>
                                         {formError.userName.length > 0 && (
