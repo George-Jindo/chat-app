@@ -26,7 +26,6 @@ class UserModal extends Component {
                 userName: '',
             },
         };
-        this.onChange = this.onChange.bind(this);
     }
 
     onChange = (e) => {
@@ -43,10 +42,7 @@ class UserModal extends Component {
             default:
         }
 
-        this.setState({ formError, [name]: value }, () =>
-            console.log(this.state)
-        );
-        this.props.onChange(this.state);
+        this.setState({ formError, [name]: value });
     };
 
     onSearch = (e) => {
@@ -64,20 +60,14 @@ class UserModal extends Component {
         e.preventDefault();
 
         if (formValid(this.state)) {
-            let body = {
-                userName: 'Jen',
-            };
-
-            Axios.post('http://localhost:5000/api/authenticate', body).then(
-                (res) => {
-                    if (res.data.isSuccessful === true) {
-                        alert('Your username is: ' + this.input.value);
-                        this.close();
-                    } else {
-                        alert('Error Message: ' + res.data.ErrorMessage);
-                    }
+            Axios.post('http://localhost:5000/api/authenticate').then((res) => {
+                if (res.data.isSuccessful === true) {
+                    alert('Your username is: ' + this.input.value);
+                    this.close();
+                } else {
+                    alert('Error Message: ' + res.data.ErrorMessage);
                 }
-            );
+            });
         } else {
             alert(
                 'Error message: Please enter a username with a minimum of 3 characters'
