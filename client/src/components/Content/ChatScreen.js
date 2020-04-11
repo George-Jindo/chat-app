@@ -33,49 +33,60 @@ class ChatScreen extends Component {
     render() {
         console.log(this.props);
         return (
-            <div>
-                <Container text style={{ marginTop: 50 }}>
+            <div className='styled'>
+                <Container
+                    text
+                    style={{
+                        marginTop: 50,
+                        overFlowY: 'auto',
+                    }}
+                >
                     <Comment.Group>
                         <Header as='h3' dividing>
                             Chatterbox Messages
                         </Header>
+                        <div className='messages'>
+                            <Comment>
+                                <Comment.Content>
+                                    <Comment.Author as='a'>John</Comment.Author>
+                                    <Comment.Metadata>
+                                        <div>Today at 5:30PM</div>
+                                    </Comment.Metadata>
+                                    <Comment.Text>
+                                        Whoa this is cool!
+                                    </Comment.Text>
+                                </Comment.Content>
+                            </Comment>
 
-                        <Comment>
-                            <Comment.Content>
-                                <Comment.Author as='a'>John</Comment.Author>
-                                <Comment.Metadata>
-                                    <div>Today at 5:30PM</div>
-                                </Comment.Metadata>
-                                <Comment.Text>Whoa this is cool!</Comment.Text>
-                            </Comment.Content>
-                        </Comment>
-
-                        <Comment>
-                            <Comment.Content>
-                                <Comment.Author as='a'>
-                                    {this.props.messages.userName}
-                                </Comment.Author>
-                                <Comment.Metadata>
-                                    <div>{this.props.messages.createdAt}</div>
-                                </Comment.Metadata>
-                                <Comment.Text>
-                                    <ul
-                                        style={{
-                                            listStylePosition: 'outside',
-                                            listStyleType: 'none',
-                                            margin: 0,
-                                            padding: 0,
-                                        }}
-                                    >
-                                        {this.props.messages.text.map(
-                                            (text, i) => (
-                                                <li key={i}>{text}</li>
-                                            )
-                                        )}
-                                    </ul>
-                                </Comment.Text>
-                            </Comment.Content>
-                        </Comment>
+                            <Comment>
+                                <Comment.Content>
+                                    <Comment.Author as='a'>
+                                        {this.props.messages.userName}
+                                    </Comment.Author>
+                                    <Comment.Metadata>
+                                        <div>
+                                            {this.props.messages.createdAt}
+                                        </div>
+                                    </Comment.Metadata>
+                                    <Comment.Text>
+                                        <ul
+                                            style={{
+                                                listStylePosition: 'outside',
+                                                listStyleType: 'none',
+                                                margin: 0,
+                                                padding: 0,
+                                            }}
+                                        >
+                                            {this.props.messages.text.map(
+                                                (text, i) => (
+                                                    <li key={i}>{text}</li>
+                                                )
+                                            )}
+                                        </ul>
+                                    </Comment.Text>
+                                </Comment.Content>
+                            </Comment>
+                        </div>
 
                         <Form reply>
                             <TextArea

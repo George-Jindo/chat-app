@@ -1,3 +1,10 @@
 .ui.comments {
     padding-top: 30px;
 }
+
+.messages {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: auto;
+    max-height: 400px;
+}
