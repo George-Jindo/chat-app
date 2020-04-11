@@ -11,26 +11,26 @@ import {
 import './ChatScreen.css';
 
 class ChatScreen extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             text: '',
         };
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
+    handleSubmit = (e) => {
+        e.preventDefault();
 
         // TO BE USED TO SEND THE DATA TO BACKEND
         const messageText = this.state;
-        console.log('Message sent is: ', messageText);
+        console.log('Message sent', messageText);
     };
 
-    handleInputChange = (event) => {
-        event.preventDefault();
+    handleInputChange = (e) => {
+        e.preventDefault();
 
         this.setState({
-            [event.target.name]: event.target.value,
+            [e.target.name]: e.target.value,
         });
     };
 

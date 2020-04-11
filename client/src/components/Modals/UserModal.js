@@ -16,8 +16,8 @@ const formValid = ({ formError, ...rest }) => {
 };
 
 class UserModal extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = {
             open: true,
