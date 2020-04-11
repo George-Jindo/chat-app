@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import {
     Button,
     Comment,
@@ -11,26 +11,50 @@ import {
 import './ChatScreen.css';
 
 class ChatScreen extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: '',
+        };
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        // TO BE USED TO SEND THE DATA TO BACKEND
+        const messageText = this.state;
+        console.log('Message sent is: ', messageText);
+    };
+
+    handleInputChange = (event) => {
+        event.preventDefault();
+
+        this.setState({
+            [event.target.name]: event.target.value,
+        });
+    };
+
     onClickHandler = (e) => {
         e.preventDefault();
 
-        axios
-            .post('http://localhost:5000/api/messages')
-            .then((res) => {
-                if (res.status === 201) {
-                    axios.get('api/messages').then((res) => {
-                        this.setState({
-                            messages: res.data,
-                        });
-                    });
-                }
-            })
-            .catch((error) => {
-                console.log('Error Message: ' + error);
-            });
+        // axios
+        //     .post('http://localhost:5000/api/messages')
+        //     .then((res) => {
+        //         if (res.status === 201) {
+        //             axios.get('api/messages').then((res) => {
+        //                 this.setState({
+        //                     messages: res.data,
+        //                 });
+        //             });
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.log('Error Message: ' + error);
+        //     });
     };
 
     render() {
+        const { text } = this.state;
         console.log(this.props);
         return (
             <div className='styled'>
@@ -86,20 +110,36 @@ class ChatScreen extends Component {
                                     </Comment.Text>
                                 </Comment.Content>
                             </Comment>
+
+                            <Comment>
+                                <Comment.Content>
+                                    <Comment.Author as='a'>
+                                        (USERNAME)
+                                    </Comment.Author>
+                                    <Comment.Metadata>
+                                        <div>Today at 8:00AM</div>
+                                    </Comment.Metadata>
+                                    <Comment.Text>{text}</Comment.Text>
+                                </Comment.Content>
+                            </Comment>
                         </div>
 
-                        <Form reply>
+                        <Form onSubmit={this.handleSubmit}>
                             <TextArea
                                 placeholder='Reply here'
                                 style={{ maxHeight: 50 }}
+                                type='text'
+                                name='text'
+                                onChange={this.handleInputChange}
                             />
                             <Button
+                                type='submit'
                                 content='Add Reply'
                                 labelPosition='left'
                                 icon='edit'
                                 primary
                                 style={{ marginTop: 5 }}
-                                onClick={this.onClickHandler}
+                                //onClick={this.onClickHandler}
                             />
                         </Form>
                     </Comment.Group>
