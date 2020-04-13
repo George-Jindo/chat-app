@@ -86,15 +86,15 @@ class ChatScreen extends Component {
                             <Comment>
                                 <Comment.Content>
                                     <Comment.Author as='a'>
-                                        {this.props.messages.userName}
+                                        {/* {this.props.messages.userName} */}
                                     </Comment.Author>
                                     <Comment.Metadata>
                                         <div>
-                                            {this.props.messages.createdAt}
+                                            {/* {this.props.messages.createdAt} */}
                                         </div>
                                     </Comment.Metadata>
                                     <Comment.Text>
-                                        <ul
+                                        {/* <ul
                                             style={{
                                                 listStylePosition: 'outside',
                                                 listStyleType: 'none',
@@ -107,7 +107,7 @@ class ChatScreen extends Component {
                                                     <li key={i}>{text}</li>
                                                 )
                                             )}
-                                        </ul>
+                                        </ul> */}
                                     </Comment.Text>
                                 </Comment.Content>
                             </Comment>
