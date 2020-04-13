@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import { Button, Header, Modal, Icon } from 'semantic-ui-react';
+import { Header, Modal, Icon, Button } from 'semantic-ui-react';
+import { LoginForm } from '../Forms/LoginForm';
+//import { LoginForm } from '../Forms/LoginForm';
 
 const formValid = ({ formError, ...rest }) => {
     let valid = true;
@@ -28,52 +30,52 @@ class UserModal extends Component {
         };
     }
 
-    onChange = (e) => {
-        e.preventDefault();
+    // onChange = (e) => {
+    //     e.preventDefault();
 
-        const { name, value } = e.target;
-        let formError = this.state.formError;
+    //     const { name, value } = e.target;
+    //     let formError = this.state.formError;
 
-        switch (name) {
-            case 'userName':
-                formError.userName =
-                    value.length < 3 ? 'minimum 3 characters required' : '';
-                break;
-            default:
-        }
+    //     switch (name) {
+    //         case 'userName':
+    //             formError.userName =
+    //                 value.length < 3 ? 'minimum 3 characters required' : '';
+    //             break;
+    //         default:
+    //     }
 
-        this.setState({ formError, [name]: value });
-    };
+    //     this.setState({ formError, [name]: value });
+    // };
 
-    onSearch = (e) => {
-        const { userName } = this.state;
+    // onSearch = (e) => {
+    //     const { userName } = this.state;
 
-        if (userName === '') {
-            return;
-        }
+    //     if (userName === '') {
+    //         return;
+    //     }
 
-        localStorage.setItem('userName', userName);
-        console.log(localStorage.getItem('userName'));
-    };
+    //     localStorage.setItem('userName', userName);
+    //     console.log(localStorage.getItem('userName'));
+    // };
 
-    onSubmit = (e) => {
-        e.preventDefault();
+    // onSubmit = (e) => {
+    //     e.preventDefault();
 
-        if (formValid(this.state)) {
-            Axios.post('http://localhost:5000/api/authenticate').then((res) => {
-                if (res.data.isSuccessful === true) {
-                    alert('Your username is: ' + this.input.value);
-                    this.close();
-                } else {
-                    alert('Error Message: ' + res.data.ErrorMessage);
-                }
-            });
-        } else {
-            alert(
-                'Error message: Please enter a username with a minimum of 3 characters'
-            );
-        }
-    };
+    //     if (formValid(this.state)) {
+    //         Axios.post('http://localhost:5000/api/authenticate').then((res) => {
+    //             if (res.data.isSuccessful === true) {
+    //                 alert('Your username is: ' + this.input.value);
+    //                 this.close();
+    //             } else {
+    //                 alert('Error Message: ' + res.data.ErrorMessage);
+    //             }
+    //         });
+    //     } else {
+    //         alert(
+    //             'Error message: Please enter a username with a minimum of 3 characters'
+    //         );
+    //     }
+    // };
 
     show = (dimmer) => () => this.setState({ dimmer, open: true });
     close = () => this.setState({ open: false });
@@ -94,7 +96,8 @@ class UserModal extends Component {
                         <Icon name='comments' size='massive' />
                         <Modal.Description>
                             <Header>Enter a username to begin</Header>
-                            <div className='ui form'>
+                            <LoginForm {...props} />>
+                            {/* <div className='ui form'>
                                 <div className='required field'>
                                     <form
                                         action='Main.js'
@@ -134,7 +137,7 @@ class UserModal extends Component {
                                         />
                                     </form>
                                 </div>
-                            </div>
+                            </div> */}
                         </Modal.Description>
                     </Modal.Content>
                 </Modal>

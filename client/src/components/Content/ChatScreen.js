@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 //import axios from 'axios';
 import {
-    Button,
     Comment,
-    Form,
     Header,
-    TextArea,
     Container,
+    Form,
+    TextArea,
+    Button,
 } from 'semantic-ui-react';
 import './ChatScreen.css';
+//import { MessageForm } from '../Forms/MessageForm';
 
 class ChatScreen extends Component {
     constructor() {
