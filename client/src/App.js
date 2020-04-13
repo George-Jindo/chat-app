@@ -29,7 +29,6 @@ class App extends Component {
                 <UserModal open={open} close={this.closeModal.bind(this)} />
                 <Navbar />
                 <ChatScreen />
-                {/* <Main /> */}
             </div>
         );
     }
