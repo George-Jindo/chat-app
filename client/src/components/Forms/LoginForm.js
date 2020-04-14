@@ -64,7 +64,6 @@ class LoginForm extends Component {
             Axios.post('http://localhost:5000/api/authenticate').then((res) => {
                 if (res.data.isSuccessful === true) {
                     alert('Your username is: ' + this.input.value);
-                    console.log(this.props);
                     this.props.close(closeModal);
                 } else {
                     alert('Error Message: ' + res.data.ErrorMessage);

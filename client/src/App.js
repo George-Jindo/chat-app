@@ -12,8 +12,15 @@ class App extends Component {
             messages: [
                 {
                     id: 1,
-                    userName: 'Tommy',
+                    username: 'Tommy',
                     text: 'Hello world!',
+                    created_at: 'Today at 5:00PM',
+                },
+                {
+                    id: 2,
+                    username: 'Tommy',
+                    text: 'How are you doing?',
+                    created_at: 'Today at 5:01PM',
                 },
             ],
             open: true, // used for modal open by default
@@ -28,7 +35,7 @@ class App extends Component {
             <div className='App'>
                 <UserModal open={open} close={this.closeModal.bind(this)} />
                 <Navbar />
-                <ChatScreen />
+                <ChatScreen messages={this.state.messages} />
             </div>
         );
     }
