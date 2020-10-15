@@ -4,11 +4,12 @@
     width: 100wh;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 .navbar {
     background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-    height: 50px;
+    min-height: 50px;
     z-index: 100;
     box-shadow: 0 1px 2px 0 #555;
 }
@@ -17,11 +18,12 @@
     flex-grow: 1;
     display: flex;
     flex-direction: row;
+    max-height: 100%;
 }
 
 .side-menu {
     background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-    width: 100px;
+    min-width: 100px;
     z-index: 50;
     box-shadow: 1px 0 2px 0 #555;
     display: flex;
@@ -36,23 +38,91 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 1rem;
+    margin: 0.75rem 1rem 0;
     height: 68px;
     border-radius: 5px;
     box-shadow: 0 1px 3px 1px #222;
-   transition: 0.5s;
-   background-size: 200% auto;          
+    transition: 0.5s;
+    background-size: 200% auto;          
+ }
+
+ .rm-btn > strong {
+     font-size: 36px;
  }
 
  .rm-btn:hover {
-   background-position: right center; /* change the direction of the change here */
-   color: #fff;
-   text-decoration: none;
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 1px 3px 1px #444;
  }
 
 
 .chat-screen {
     background-color: #eee;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
+
+.chat-body {
+    background-color: #eee;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    overflow: auto;
+}
+
+.message {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.2rem;
+}
+
+.message:first-child {
+    margin-top: auto;
+}
+
+.message > * {
+    padding: .2rem;
+}
+
+.message > header {
+    font-weight: bold;
+    min-width: 100px;
+    text-align: right;
+}
+
+.message > p {
+    margin: 0;
+    flex-grow: 5;
+}
+
+.message > footer {
+    min-width: 60px;
+    text-align: center;
+}
+
+.chat-input {
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    min-height: 70px;
+    z-index: 25;
+    box-shadow: 0 -1px 2px 0px #555;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    
+}
+
+.chat-input > input {
+    flex-grow: 2;
+    outline: none;
+}
+
+.chat-input > button {
+    flex-grow: 1;
+}
+
+
 
