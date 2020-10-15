@@ -1,5 +1,9 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: rgb(234, 234, 234) !important;
+    margin:0;
 }
 
 .ui.inverted.top.fixed.menu {

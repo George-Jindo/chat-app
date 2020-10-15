@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './Styles.css';
-import Navbar from './components/Navbar/Navbar';
-import { UserModal } from './components/Modals/UserModal';
-import ChatScreen from './components/Content/ChatScreen';
+//import Navbar from './components/Navbar/Navbar';
+//import { UserModal } from './components/Modals/UserModal';
+//import ChatScreen from './components/Content/ChatScreen';
+import Main from './components/Content/Main';
 
 class App extends Component {
     constructor(props) {
@@ -30,12 +31,13 @@ class App extends Component {
     closeModal = () => this.setState({ open: false });
 
     render() {
-        const { open } = this.state;
+        //const { open } = this.state;
         return (
             <div className='App'>
-                <UserModal open={open} close={this.closeModal.bind(this)} />
-                <Navbar />
-                <ChatScreen messages={this.state.messages} />
+                <Main />
+                {/*<UserModal open={open} close={this.closeModal.bind(this)} /> */}
+                {/*<Navbar />*/}
+                {/*<ChatScreen messages={this.state.messages} />*/}
             </div>
         );
     }
