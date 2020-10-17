@@ -8,6 +8,7 @@ class Main extends Component {
                 <div className='navbar'></div>
                 <div className='main'>
                     <div className='side-menu'>
+                        <h3>Rooms</h3>
                         <a className='rm-btn' href='#'>
                             Testing
                         </a>
