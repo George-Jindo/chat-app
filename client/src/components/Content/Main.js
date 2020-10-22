@@ -5,7 +5,22 @@ class Main extends Component {
     render() {
         return (
             <div className='container'>
-                <div className='navbar'></div>
+                <div className='navbarContainer'>
+                    <div className='navbarLogo'>
+                        <h1>Chatterbox</h1>
+                    </div>
+                    <ul className='navbarLinks'>
+                        <li>
+                            <a href='#'>Test</a>
+                        </li>
+                        <li>
+                            <a href='#'>Test</a>
+                        </li>
+                        <li>
+                            <a href='#'>Test</a>
+                        </li>
+                    </ul>
+                </div>
                 <div className='main'>
                     <div className='side-menu'>
                         <h3>Rooms</h3>
