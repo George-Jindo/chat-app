@@ -7,19 +7,8 @@ class Main extends Component {
             <div className='container'>
                 <div className='navbarContainer'>
                     <div className='navbarLogo'>
-                        <h1>Chatterbox</h1>
+                        <h2>Chatterbox</h2>
                     </div>
-                    <ul className='navbarLinks'>
-                        <li>
-                            <a href='#'>Test</a>
-                        </li>
-                        <li>
-                            <a href='#'>Test</a>
-                        </li>
-                        <li>
-                            <a href='#'>Test</a>
-                        </li>
-                    </ul>
                 </div>
                 <div className='main'>
                     <div className='side-menu'>
@@ -50,8 +39,8 @@ class Main extends Component {
                             </div>
                             <div className='message'>
                                 <header>Scott Miller:</header>
-                                <p>This is another message!</p>
-                                <footer>16:01</footer>
+                                <p>This is yet another message!</p>
+                                <footer>16:02</footer>
                             </div>
                         </div>
                         <div className='chat-input'>

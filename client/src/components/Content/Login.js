@@ -38,6 +38,7 @@ class Login extends Component {
                     })}
                     onSubmit={(values, { setSubmitting, resetForm }) => {
                         setTimeout(() => {
+                            debugger;
                             alert(JSON.stringify(values, null, 2));
                             resetForm();
                             setSubmitting(false);
