@@ -21,7 +21,7 @@ const CustomTextInput = ({ label, ...props }) => {
 class Login extends Component {
     render() {
         return (
-            <div>
+            <div className='form-container'>
                 <Formik
                     initialValues={{
                         name: '',
@@ -53,7 +53,7 @@ class Login extends Component {
                         <Form>
                             <h1>Login to begin chatting</h1>
                             <CustomTextInput
-                                label='Name'
+                                label='Username'
                                 name='name'
                                 type='text'
                                 placeholder='Enter Username'
@@ -63,6 +63,75 @@ class Login extends Component {
                                 name='email'
                                 type='email'
                                 placeholder='Enter Email'
+                            />
+                            <button type='submit'>
+                                {props.isSubmitting ? 'Loading...' : 'Submit'}
+                            </button>
+                        </Form>
+                    )}
+                </Formik>
+                <Formik
+                    initialValues={{
+                        name: '',
+                        email: '',
+                        password: '',
+                        confirmPassword: '',
+                    }}
+                    validationSchema={Yup.object({
+                        name: Yup.string()
+                            .min(3, 'Must be at least 3 characters long')
+                            .max(15, 'Must not exceed 15 characters')
+                            .required('Required'),
+                        email: Yup.string()
+                            .email('Invalid email address')
+                            .required('Required'),
+                        password: Yup.string().required('Required'),
+                        confirmPassword: Yup.string()
+                            .oneOf(
+                                [Yup.ref('password'), ''],
+                                'Passwords must match'
+                            )
+                            .required('Required'),
+                    })}
+                    onSubmit={(values, { setSubmitting, resetForm }) => {
+                        setTimeout(() => {
+                            debugger;
+                            alert(JSON.stringify(values, null, 2));
+                            resetForm();
+                            setSubmitting(false);
+                            {
+                                this.props.history.push('/chat');
+                            }
+                            console.log('This is working to this point');
+                        }, 3000);
+                    }}
+                >
+                    {(props) => (
+                        <Form>
+                            <h1>Create an account.</h1>
+                            <CustomTextInput
+                                label='Username'
+                                name='name'
+                                type='text'
+                                placeholder='New Username'
+                            />
+                            <CustomTextInput
+                                label='Email'
+                                name='email'
+                                type='email'
+                                placeholder='New Email'
+                            />
+                            <CustomTextInput
+                                label='Password'
+                                name='password'
+                                type='password'
+                                placeholder='Enter Password'
+                            />
+                            <CustomTextInput
+                                label='Confirm Password'
+                                name='confirmPassword'
+                                type='password'
+                                placeholder='Confirm Password'
                             />
                             <button type='submit'>
                                 {props.isSubmitting ? 'Loading...' : 'Submit'}
