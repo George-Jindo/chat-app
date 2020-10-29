@@ -17,7 +17,6 @@ const CustomTextInput = ({ label, ...props }) => {
         </>
     );
 };
-
 class Login extends Component {
     render() {
         return (
@@ -38,19 +37,19 @@ class Login extends Component {
                     })}
                     onSubmit={(values, { setSubmitting, resetForm }) => {
                         setTimeout(() => {
-                            debugger;
+                            // TODO: SEND POST REQUEST API
+                            // TODO: ESTABLISH DB CONNECTION
                             alert(JSON.stringify(values, null, 2));
                             resetForm();
                             setSubmitting(false);
                             {
                                 this.props.history.push('/chat');
                             }
-                            console.log('This is working to this point');
                         }, 3000);
                     }}
                 >
                     {(props) => (
-                        <Form>
+                        <Form className='login-form'>
                             <h1>Login to begin chatting</h1>
                             <CustomTextInput
                                 label='Username'
@@ -95,7 +94,6 @@ class Login extends Component {
                     })}
                     onSubmit={(values, { setSubmitting, resetForm }) => {
                         setTimeout(() => {
-                            debugger;
                             alert(JSON.stringify(values, null, 2));
                             resetForm();
                             setSubmitting(false);
@@ -107,7 +105,7 @@ class Login extends Component {
                     }}
                 >
                     {(props) => (
-                        <Form>
+                        <Form className='register-form'>
                             <h1>Create an account.</h1>
                             <CustomTextInput
                                 label='Username'
