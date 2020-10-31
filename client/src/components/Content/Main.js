@@ -14,7 +14,7 @@ class Main extends Component {
                     <div className='side-menu'>
                         <h3>Rooms</h3>
                         <button className='rm-btn' href='#'>
-                            Testing
+                            General
                         </button>
                         <button className='rm-btn' href='#'>
                             <strong>+</strong>
