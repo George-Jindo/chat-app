@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Formik, useField, Form } from 'formik';
 import { withRouter } from 'react-router-dom';
 import * as Yup from 'yup';
+import axios from 'axios';
 import './Login.css';
 
 const CustomTextInput = ({ label, ...props }) => {
@@ -37,14 +38,12 @@ class Login extends Component {
                     })}
                     onSubmit={(values, { setSubmitting, resetForm }) => {
                         setTimeout(() => {
-                            // TODO: SEND POST REQUEST API
                             // TODO: ESTABLISH DB CONNECTION
                             alert(JSON.stringify(values, null, 2));
                             resetForm();
                             setSubmitting(false);
-                            {
-                                this.props.history.push('/chat');
-                            }
+
+                            this.props.history.push('/chat');
                         }, 3000);
                     }}
                 >
@@ -94,13 +93,23 @@ class Login extends Component {
                     })}
                     onSubmit={(values, { setSubmitting, resetForm }) => {
                         setTimeout(() => {
-                            alert(JSON.stringify(values, null, 2));
+                            // TODO: SEND POST REQUEST API
+                            axios
+                                .post(
+                                    'https://jsonplaceholder.typicode.com/users',
+                                    values,
+                                    null,
+                                    2
+                                )
+                                .then((res) => {
+                                    console.log(res);
+                                    console.log(res.data);
+                                });
+                            //alert(JSON.stringify(values, null, 2));
                             resetForm();
                             setSubmitting(false);
-                            {
-                                this.props.history.push('/chat');
-                            }
-                            console.log('This is working to this point');
+
+                            this.props.history.push('/chat');
                         }, 3000);
                     }}
                 >

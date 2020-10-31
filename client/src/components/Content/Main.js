@@ -13,12 +13,12 @@ class Main extends Component {
                 <div className='main'>
                     <div className='side-menu'>
                         <h3>Rooms</h3>
-                        <a className='rm-btn' href='#'>
+                        <button className='rm-btn' href='#'>
                             Testing
-                        </a>
-                        <a className='rm-btn' href='#'>
+                        </button>
+                        <button className='rm-btn' href='#'>
                             <strong>+</strong>
-                        </a>
+                        </button>
                     </div>
                     <div className='chat-screen'>
                         <div className='chat-body'>
