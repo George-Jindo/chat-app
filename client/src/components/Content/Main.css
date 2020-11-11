@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 body {
-    font-family: montserrat, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 a {
@@ -10,25 +10,18 @@ a {
 
 .container {
     margin: 0;
-    height: 100vh;
+    height: 80vh;
     width: 100wh;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .navbarContainer {
-    background: #00c6ff; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-        to right,
-        #0072ff,
-        #00c6ff
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-        to right,
-        #0072ff,
-        #00c6ff
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #00c6ff;
+    background: -webkit-linear-gradient(to right, #00c6ff, #0072ff);
+    background: linear-gradient(to right, #00c6ff, #0072ff);
 
     min-height: 50px;
     z-index: 100;
@@ -44,20 +37,12 @@ a {
 }
 
 .side-menu {
-    background: #00c6ff; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-        to bottom,
-        #0072ff,
-        #00c6ff
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-        to bottom,
-        #0072ff,
-        #00c6ff
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #00c6ff;
+    background: -webkit-linear-gradient(to bottom, #00c6ff, #0072ff);
+    background: linear-gradient(to bottom, #00c6ff, #0072ff);
 
-    min-width: 100px;
-    max-width: 100px;
+    min-width: 150px;
+    max-width: 150px;
     z-index: 50;
     box-shadow: 1px 0 2px 0 #01aeff;
     display: flex;
@@ -165,17 +150,7 @@ button {
 }
 
 .chat-input {
-    background: #00c6ff; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-        to left,
-        #0072ff,
-        #00c6ff
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-        to left,
-        #0072ff,
-        #00c6ff
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #0072ff;
 
     min-height: 70px;
     z-index: 25;
@@ -195,6 +170,7 @@ button {
     flex-grow: 1;
     max-width: 20%;
     margin: 0.25rem;
+    padding: 5px;
     border-radius: 0.3125rem;
     background-color: #0375ff;
     border: solid 1px #fff;
