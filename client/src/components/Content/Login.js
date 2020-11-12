@@ -20,17 +20,7 @@ const CustomTextInput = ({ label, ...props }) => {
 };
 class Login extends Component {
     toggleClass = () => {
-        this.signUpButton.addEventListener('click', () =>
-            container.classList.add('right-panel-active')
-        );
-
-        signInButton.addEventListener('click', () =>
-            container.classList.remove('right-panel-active')
-        );
-
-        this.signUpButton = document.getElementById('signUp').className;
-        const signInButton = document.getElementById('signIn').className;
-        const container = document.getElementById('container').className;
+        //THIS IS WHERE CODE SHOULD GO TO TOGGLE THE CSS SELECTOR
     };
 
     render() {
@@ -181,10 +171,10 @@ class Login extends Component {
                             </button>
                         </div>
                         <div class='overlay-panel overlay-right'>
-                            <h1>Hello, Friend!</h1>
+                            <h1>Don't have an account?</h1>
                             <p>
-                                Enter your personal details and start journey
-                                with us
+                                Enter your personal details to begin chatting
+                                with other users by clicking the button below.
                             </p>
                             <button
                                 class='ghost'
