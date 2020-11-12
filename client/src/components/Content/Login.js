@@ -19,13 +19,26 @@ const CustomTextInput = ({ label, ...props }) => {
     );
 };
 class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.container = React.createRef();
+        this.signUpButton = React.createRef();
+        this.signInButton = React.createRef();
+    }
     toggleClass = () => {
         //THIS IS WHERE CODE SHOULD GO TO TOGGLE THE CSS SELECTOR
+        console.log(this.container.current.id);
+        console.log(this.signUpButton);
+        this.signUpButton.current.classList.add('right-panel-active');
     };
 
     render() {
         return (
-            <div className='container-forms' id='container'>
+            <div
+                className='container-forms'
+                id='container'
+                ref={this.container}
+            >
                 <div className='form-container sign-in-container'>
                     <Formik
                         initialValues={{
@@ -158,27 +171,28 @@ class Login extends Component {
                         )}
                     </Formik>
                 </div>
-                <div class='overlay-container'>
-                    <div class='overlay'>
-                        <div class='overlay-panel overlay-left'>
+                <div className='overlay-container'>
+                    <div className='overlay'>
+                        <div className='overlay-panel overlay-left'>
                             <h1>Welcome Back!</h1>
                             <p>
-                                To keep connected with us please login with your
+                                To begin chatting please login with your
                                 personal info
                             </p>
-                            <button class='ghost' id='signIn'>
+                            <button className='ghost' id='signIn'>
                                 Sign In
                             </button>
                         </div>
-                        <div class='overlay-panel overlay-right'>
+                        <div className='overlay-panel overlay-right'>
                             <h1>Don't have an account?</h1>
                             <p>
                                 Enter your personal details to begin chatting
                                 with other users by clicking the button below.
                             </p>
                             <button
-                                class='ghost'
+                                className='ghost'
                                 id='signUp'
+                                ref={this.signUpButton}
                                 onClick={this.toggleClass}
                             >
                                 Sign Up

@@ -68,7 +68,7 @@ a {
     z-index: 2;
 }
 
-.container.right-panel-active .sign-in-container {
+.container-forms.right-panel-active .sign-in-container {
     transform: translateX(100%);
 }
 
