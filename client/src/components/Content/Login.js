@@ -22,14 +22,13 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.container = React.createRef();
-        this.signUpButton = React.createRef();
-        this.signInButton = React.createRef();
     }
-    toggleClass = () => {
-        //THIS IS WHERE CODE SHOULD GO TO TOGGLE THE CSS SELECTOR
-        console.log(this.container.current.id);
-        console.log(this.signUpButton);
-        this.signUpButton.current.classList.add('right-panel-active');
+    toggleClassActive = () => {
+        this.container.current.classList.add('right-panel-active');
+    };
+
+    toggleClassInactive = () => {
+        this.container.current.classList.remove('right-panel-active');
     };
 
     render() {
@@ -179,7 +178,12 @@ class Login extends Component {
                                 To begin chatting please login with your
                                 personal info
                             </p>
-                            <button className='ghost' id='signIn'>
+                            <button
+                                className='ghost'
+                                id='signIn'
+                                onClick={this.toggleClassInactive}
+                            >
+                                {' '}
                                 Sign In
                             </button>
                         </div>
@@ -192,8 +196,7 @@ class Login extends Component {
                             <button
                                 className='ghost'
                                 id='signUp'
-                                ref={this.signUpButton}
-                                onClick={this.toggleClass}
+                                onClick={this.toggleClassActive}
                             >
                                 Sign Up
                             </button>
