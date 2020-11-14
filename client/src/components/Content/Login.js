@@ -58,7 +58,7 @@ class Login extends Component {
                                         'http://localhost:5000/api/authenticate'
                                     )
                                     .then((res) => {
-                                        if (res.data.IsSuccessful === true) {
+                                        if (res.data.isSuccessful === true) {
                                             alert(
                                                 JSON.stringify(values, null, 2)
                                             );
@@ -70,7 +70,7 @@ class Login extends Component {
                                             resetForm();
                                             alert(
                                                 'Error Message: ' +
-                                                    res.data.ErrorMessage
+                                                    res.data.errorMessage
                                             );
                                         }
                                     });
