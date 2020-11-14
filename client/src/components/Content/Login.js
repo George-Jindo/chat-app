@@ -42,25 +42,39 @@ class Login extends Component {
                     <Formik
                         initialValues={{
                             name: '',
-                            email: '',
+                            password: '',
                         }}
                         validationSchema={Yup.object({
                             name: Yup.string()
                                 .min(3, 'Must be at least 3 characters long')
                                 .max(15, 'Must not exceed 15 characters')
                                 .required('Required'),
-                            email: Yup.string()
-                                .email('Invalid email address')
-                                .required('Required'),
+                            password: Yup.string().required('Required'),
                         })}
                         onSubmit={(values, { setSubmitting, resetForm }) => {
                             setTimeout(() => {
-                                // TODO: ESTABLISH DB CONNECTION
-                                alert(JSON.stringify(values, null, 2));
-                                resetForm();
-                                setSubmitting(false);
+                                axios
+                                    .post(
+                                        'http://localhost:5000/api/authenticate'
+                                    )
+                                    .then((res) => {
+                                        if (res.data.IsSuccessful === true) {
+                                            alert(
+                                                JSON.stringify(values, null, 2)
+                                            );
+                                            resetForm();
+                                            setSubmitting(false);
 
-                                this.props.history.push('/chat');
+                                            this.props.history.push('/chat');
+                                        } else {
+                                            resetForm();
+                                            alert(
+                                                'Error Message: ' +
+                                                    res.data.ErrorMessage
+                                            );
+                                        }
+                                    });
+                                // TODO: ESTABLISH DB CONNECTION
                             }, 3000);
                         }}
                     >
@@ -74,10 +88,10 @@ class Login extends Component {
                                     placeholder='Enter Username'
                                 />
                                 <CustomTextInput
-                                    label='Email'
-                                    name='email'
-                                    type='email'
-                                    placeholder='Enter Email'
+                                    label='Password'
+                                    name='password'
+                                    type='password'
+                                    placeholder='Enter Password'
                                 />
                                 <button type='submit'>
                                     {props.isSubmitting

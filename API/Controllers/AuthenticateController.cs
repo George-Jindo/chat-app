@@ -23,6 +23,8 @@ namespace API.Controllers
             return new Response
             {
                 IsSuccessful = true,
+                UserName = "George",
+                Password = "password",
                 Id = 1,
                 ErrorMessage = "Username not found"
             };
@@ -33,6 +35,10 @@ namespace API.Controllers
     {
         public bool IsSuccessful { get; set; }
         public int Id { get; set; }
+
+        public string UserName { get; set; }
+
+        public string Password { get; set; }
         public string ErrorMessage { get; set; }
     }
 }
