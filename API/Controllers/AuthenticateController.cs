@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Chatterbox.Models;
 using Microsoft.AspNetCore.Mvc;
+using API.Models;
 using Newtonsoft.Json;
 
 namespace API.Controllers

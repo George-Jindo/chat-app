@@ -132,7 +132,7 @@ class Login extends Component {
                                 // TODO: SEND POST REQUEST API
                                 axios
                                     .post(
-                                        'https://jsonplaceholder.typicode.com/users',
+                                        'http://localhost:5000/api/users',
                                         values,
                                         null,
                                         2
