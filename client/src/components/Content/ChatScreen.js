@@ -11,7 +11,7 @@ class ChatScreen extends Component {
                 <Comment>
                     <Comment.Content>
                         <Comment.Author>
-                            {messages.username}
+                            {messages.name}
                             <Comment.Metadata>
                                 {messages.created_at}
                             </Comment.Metadata>

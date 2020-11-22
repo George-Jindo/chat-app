@@ -15,13 +15,13 @@ class App extends Component {
             messages: [
                 {
                     id: 1,
-                    username: 'Tommy',
+                    name: 'Tommy',
                     text: 'Hello world!',
                     created_at: 'Today at 5:00PM',
                 },
                 {
                     id: 2,
-                    username: 'Tommy',
+                    name: 'Tommy',
                     text: 'How are you doing?',
                     created_at: 'Today at 5:01PM',
                 },
@@ -38,7 +38,14 @@ class App extends Component {
             <Router>
                 <div className='App'>
                     <Route path='/' exact component={Login} />
-                    <Route path='/chat' exact component={Main} />
+
+                    <Route
+                        path='/chat'
+                        exact
+                        component={Main}
+                        messages={this.state.messages}
+                    />
+
                     {/*<UserModal open={open} close={this.closeModal.bind(this)} /> */}
                     {/*<Navbar />*/}
                     {/*<ChatScreen messages={this.state.messages} />*/}

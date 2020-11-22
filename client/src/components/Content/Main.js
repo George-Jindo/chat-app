@@ -1,8 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './Main.css';
 
 class Main extends Component {
     render() {
+        const messages = this.props.messages.map((messages) => {
+            return (
+                <Fragment>
+                    <header> {messages.name}</header>
+                    <p>{messages.text}</p>
+                    <footer>{messages.created_at}</footer>
+                </Fragment>
+            );
+        });
         return (
             <div className='container'>
                 <div className='navbarContainer'>
@@ -22,30 +31,7 @@ class Main extends Component {
                     </div>
                     <div className='chat-screen'>
                         <div className='chat-body'>
-                            <div className='message'>
-                                <header>Michael:</header>
-                                <p>This is a message!</p>
-                                <footer>16:00</footer>
-                            </div>
-                            <div className='message'>
-                                <header>Scott Miller:</header>
-                                <p>
-                                    This is another message! This is another
-                                    message! This is another message! This is
-                                    another message! This is another message!
-                                    This is another message!
-                                </p>
-                                <footer>16:01</footer>
-                            </div>
-                            <div className='message'>
-                                <header>Scott Miller:</header>
-                                <p>This is yet another message!</p>
-                                <footer>16:02</footer>
-                            </div>
-                        </div>
-                        <div className='chat-input'>
-                            <input type='text'></input>
-                            <button>Send</button>
+                            <div className='message'>{messages}</div>
                         </div>
                     </div>
                 </div>
