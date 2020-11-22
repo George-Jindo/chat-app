@@ -37,14 +37,12 @@ class App extends Component {
         return (
             <Router>
                 <div className='App'>
-                    <Route path='/' exact component={Login} />
-
-                    <Route
-                        path='/chat'
-                        exact
-                        component={Main}
-                        messages={this.state.messages}
-                    />
+                    <Route path='/' exact>
+                        <Login />
+                    </Route>
+                    <Route path='/chat' exact>
+                        <Main messages={this.state.messages} />
+                    </Route>
 
                     {/*<UserModal open={open} close={this.closeModal.bind(this)} /> */}
                     {/*<Navbar />*/}

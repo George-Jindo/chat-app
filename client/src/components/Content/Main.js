@@ -3,6 +3,7 @@ import './Main.css';
 
 class Main extends Component {
     render() {
+        console.log('Error:', this.props);
         const messages = this.props.messages.map((messages) => {
             return (
                 <Fragment>
@@ -32,6 +33,10 @@ class Main extends Component {
                     <div className='chat-screen'>
                         <div className='chat-body'>
                             <div className='message'>{messages}</div>
+                        </div>
+                        <div className='chat-input'>
+                            <input type='text'></input>
+                            <button>Send</button>
                         </div>
                     </div>
                 </div>
