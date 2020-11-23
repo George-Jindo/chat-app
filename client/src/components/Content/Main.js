@@ -3,7 +3,6 @@ import './Main.css';
 
 class Main extends Component {
     render() {
-        console.log('Error:', this.props);
         const messages = this.props.messages.map((messages) => {
             return (
                 <Fragment>
