@@ -117,6 +117,7 @@ button {
     display: flex;
     flex-direction: column;
     padding-bottom: 1rem;
+    padding-right: 1rem;
     overflow: auto;
 }
 

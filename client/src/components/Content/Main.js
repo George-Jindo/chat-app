@@ -5,7 +5,7 @@ class Main extends Component {
     render() {
         const messages = this.props.messages.map((messages) => {
             return (
-                <div className='messages'>
+                <div className='messages' key={messages.id}>
                     <header> {messages.name}</header>
                     <p>{messages.text}</p>
                     <footer>{messages.created_at}</footer>
@@ -37,8 +37,11 @@ class Main extends Component {
                                 value={this.props.messageField}
                                 onChange={this.props.handleChange}
                                 name='messageField'
+                                onKeyPress={this.props.onKeyPress}
                             ></input>
-                            <button>Send</button>
+                            <button onClick={this.props.handleSubmit}>
+                                Send
+                            </button>
                         </div>
                     </div>
                 </div>

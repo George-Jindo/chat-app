@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './Styles.css';
-//import Navbar from './components/Navbar/Navbar';
-//import { UserModal } from './components/Modals/UserModal';
-//import ChatScreen from './components/Content/ChatScreen';
 import Main from './components/Content/Main';
 import Login from './components/Content/Login';
 
@@ -21,13 +18,12 @@ class App extends Component {
                 },
                 {
                     id: 2,
-                    name: 'Tommy',
-                    text: 'How are you doing?',
+                    name: 'Mark',
+                    text: 'How are you doing Tommy?',
                     created_at: 'Today at 5:01PM',
                 },
             ],
             messageField: '',
-            open: true, // used for modal open by default
         };
     }
 
@@ -39,10 +35,25 @@ class App extends Component {
         console.log(value);
     };
 
-    closeModal = () => this.setState({ open: false });
+    handleMessageSubmit = (e) => {
+        e.preventDefault();
+        this.clearMessageInput();
+    };
+
+    clearMessageInput = () => {
+        this.setState({
+            messageField: '',
+        });
+    };
+
+    onKeyPress = (e) => {
+        if (e.which === 13) {
+            e.preventDefault();
+            this.clearMessageInput();
+        }
+    };
 
     render() {
-        //const { open } = this.state;
         return (
             <Router>
                 <div className='App'>
@@ -54,12 +65,10 @@ class App extends Component {
                             messages={this.state.messages}
                             messageField={this.state.messageField}
                             handleChange={this.handleMessageChange}
+                            handleSubmit={this.handleMessageSubmit}
+                            onKeyPress={this.onKeyPress}
                         />
                     </Route>
-
-                    {/*<UserModal open={open} close={this.closeModal.bind(this)} /> */}
-                    {/*<Navbar />*/}
-                    {/*<ChatScreen messages={this.state.messages} />*/}
                 </div>
             </Router>
         );
