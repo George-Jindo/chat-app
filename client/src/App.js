@@ -26,9 +26,18 @@ class App extends Component {
                     created_at: 'Today at 5:01PM',
                 },
             ],
+            messageField: '',
             open: true, // used for modal open by default
         };
     }
+
+    handleMessageChange = (e) => {
+        const { name, value } = e.target;
+        this.setState({
+            [name]: value,
+        });
+        console.log(value);
+    };
 
     closeModal = () => this.setState({ open: false });
 
@@ -41,7 +50,11 @@ class App extends Component {
                         <Login />
                     </Route>
                     <Route path='/chat' exact>
-                        <Main messages={this.state.messages} />
+                        <Main
+                            messages={this.state.messages}
+                            messageField={this.state.messageField}
+                            handleChange={this.handleMessageChange}
+                        />
                     </Route>
 
                     {/*<UserModal open={open} close={this.closeModal.bind(this)} /> */}

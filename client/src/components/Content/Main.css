@@ -120,33 +120,33 @@ button {
     overflow: auto;
 }
 
-.message {
+.messages {
     display: flex;
     flex-direction: row;
     margin-top: 0.2rem;
 }
 
-.message:first-child {
+.messages:first-child {
     margin-top: auto;
 }
 
-.message > * {
+.messages > * {
     padding: 0.2rem;
 }
 
-.message > header {
+.messages > header {
     font-weight: bold;
     min-width: 100px;
     text-align: right;
 }
 
-.message > p {
+.messages > p {
     margin: 0;
     flex-grow: 5;
     font-family: Montserrat, sans-serif;
 }
 
-.message > footer {
+.messages > footer {
     min-width: 60px;
     text-align: center;
 }

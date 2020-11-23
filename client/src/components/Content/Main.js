@@ -1,15 +1,15 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './Main.css';
 
 class Main extends Component {
     render() {
         const messages = this.props.messages.map((messages) => {
             return (
-                <Fragment>
+                <div className='messages'>
                     <header> {messages.name}</header>
                     <p>{messages.text}</p>
                     <footer>{messages.created_at}</footer>
-                </Fragment>
+                </div>
             );
         });
         return (
@@ -30,11 +30,14 @@ class Main extends Component {
                         </button>
                     </div>
                     <div className='chat-screen'>
-                        <div className='chat-body'>
-                            <div className='message'>{messages}</div>
-                        </div>
+                        <div className='chat-body'>{messages}</div>
                         <div className='chat-input'>
-                            <input type='text'></input>
+                            <input
+                                type='text'
+                                value={this.props.messageField}
+                                onChange={this.props.handleChange}
+                                name='messageField'
+                            ></input>
                             <button>Send</button>
                         </div>
                     </div>
