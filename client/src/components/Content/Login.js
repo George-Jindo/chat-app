@@ -86,7 +86,9 @@ class Login extends Component {
                                     label='Username'
                                     name='name'
                                     type='text'
+                                    value={this.props.name}
                                     placeholder='Enter Username'
+                                    onChange={this.props.handleLoginChange}
                                 />
                                 <CustomTextInput
                                     label='Password'
@@ -94,7 +96,10 @@ class Login extends Component {
                                     type='password'
                                     placeholder='Enter Password'
                                 />
-                                <button type='submit'>
+                                <button
+                                    type='submit'
+                                    onClick={this.props.handleLoginSubmit}
+                                >
                                     {props.isSubmitting
                                         ? 'Loading...'
                                         : 'Submit'}

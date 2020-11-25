@@ -23,10 +23,14 @@ class App extends Component {
                     created_at: 'Today at 5:01PM',
                 },
             ],
+            name: '',
             messageField: '',
+            newMessages: '',
+            isLoggedIn: true,
         };
     }
 
+    // Message Handling Start -->
     handleMessageChange = (e) => {
         const { name, value } = e.target;
         this.setState({
@@ -37,6 +41,15 @@ class App extends Component {
 
     handleMessageSubmit = (e) => {
         e.preventDefault();
+        let messages = this.state.messages;
+        let messageField = this.state.messageField;
+        let newMessages = [...messages, { text: messageField }];
+        this.setState({ messages: newMessages });
+
+        const userName = this.state.user.name;
+        localStorage.setItem('user', this.state.user.name);
+        console.log(userName);
+
         this.clearMessageInput();
     };
 
@@ -49,16 +62,46 @@ class App extends Component {
     onKeyPress = (e) => {
         if (e.which === 13) {
             e.preventDefault();
+            let messages = this.state.messages;
+            let messageField = this.state.messageField;
+            let newMessages = [...messages, { text: messageField }];
+            this.setState({ messages: newMessages });
+
             this.clearMessageInput();
         }
     };
+    // Message Handling End <--
+
+    // Login Handling Start -->
+    handleLoginChange = (e) => {
+        const input = e.target;
+        const value = input.value;
+
+        this.setState({ [input.name]: value });
+    };
+
+    handleLoginSubmit = () => {
+        const { name } = this.state;
+        localStorage.setItem('user', name);
+
+        console.log('Foo');
+    };
+
+    componentDidMount() {
+        const name = localStorage.getItem('name');
+        this.setState({ name });
+    }
 
     render() {
         return (
             <Router>
                 <div className='App'>
                     <Route path='/' exact>
-                        <Login />
+                        <Login
+                            user={this.state.name}
+                            handleLoginChange={this.handleLoginChange}
+                            handleLoginSubmit={this.handleLoginSubmit}
+                        />
                     </Route>
                     <Route path='/chat' exact>
                         <Main
@@ -67,6 +110,7 @@ class App extends Component {
                             handleChange={this.handleMessageChange}
                             handleSubmit={this.handleMessageSubmit}
                             onKeyPress={this.onKeyPress}
+                            isLoggedIn={this.state.isLoggedIn}
                         />
                     </Route>
                 </div>
