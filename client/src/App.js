@@ -43,12 +43,9 @@ class App extends Component {
         e.preventDefault();
         let messages = this.state.messages;
         let messageField = this.state.messageField;
-        let newMessages = [...messages, { text: messageField }];
+        const userName = localStorage.getItem('user');
+        let newMessages = [...messages, { text: messageField, name: userName }];
         this.setState({ messages: newMessages });
-
-        const userName = this.state.user.name;
-        localStorage.setItem('user', this.state.user.name);
-        console.log(userName);
 
         this.clearMessageInput();
     };
@@ -88,7 +85,7 @@ class App extends Component {
     };
 
     componentDidMount() {
-        const name = localStorage.getItem('name');
+        const name = localStorage.getItem('user') || '';
         this.setState({ name });
     }
 

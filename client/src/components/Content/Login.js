@@ -41,8 +41,9 @@ class Login extends Component {
             >
                 <div className='form-container sign-in-container'>
                     <Formik
+                        enableReinitialize
                         initialValues={{
-                            name: '',
+                            name: this.props.user,
                             password: '',
                         }}
                         validationSchema={Yup.object({
@@ -86,7 +87,7 @@ class Login extends Component {
                                     label='Username'
                                     name='name'
                                     type='text'
-                                    value={this.props.name}
+                                    value={this.props.user}
                                     placeholder='Enter Username'
                                     onChange={this.props.handleLoginChange}
                                 />
@@ -110,8 +111,9 @@ class Login extends Component {
                 </div>
                 <div className='form-container sign-up-container'>
                     <Formik
+                        enableReinitialize
                         initialValues={{
-                            name: '',
+                            name: this.props.user,
                             email: '',
                             password: '',
                             confirmPassword: '',
@@ -161,7 +163,9 @@ class Login extends Component {
                                     label='Username'
                                     name='name'
                                     type='text'
+                                    value={this.props.user}
                                     placeholder='New Username'
+                                    onChange={this.props.handleLoginChange}
                                 />
                                 <CustomTextInput
                                     label='Email'
@@ -181,7 +185,10 @@ class Login extends Component {
                                     type='password'
                                     placeholder='Confirm Password'
                                 />
-                                <button type='submit'>
+                                <button
+                                    type='submit'
+                                    onClick={this.props.handleLoginSubmit}
+                                >
                                     {props.isSubmitting
                                         ? 'Loading...'
                                         : 'Submit'}
