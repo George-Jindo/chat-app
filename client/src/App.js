@@ -77,11 +77,9 @@ class App extends Component {
         this.setState({ [input.name]: value });
     };
 
-    handleLoginSubmit = () => {
+    handleLoginSubmit = (e) => {
         const { name } = this.state;
         localStorage.setItem('user', name);
-
-        console.log('Foo');
     };
 
     componentDidMount() {
