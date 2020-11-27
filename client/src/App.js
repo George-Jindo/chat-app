@@ -39,12 +39,22 @@ class App extends Component {
         console.log(value);
     };
 
+    submitValidation() {
+        const { name, messageField } = this.state;
+        return name.length > 0 && messageField.length > 0;
+    }
+
     handleMessageSubmit = (e) => {
-        e.preventDefault();
+        if (!this.submitValidation()) {
+            e.preventDefault();
+            return;
+        }
+
         let messages = this.state.messages;
         let messageField = this.state.messageField;
         const userName = localStorage.getItem('user');
         let newMessages = [...messages, { text: messageField, name: userName }];
+
         this.setState({ messages: newMessages });
 
         this.clearMessageInput();
