@@ -41,12 +41,13 @@ class App extends Component {
 
     submitValidation() {
         const { name, messageField } = this.state;
-        return name.length > 0 && messageField.length > 0;
+        return name.length > 0 && messageField.trim();
     }
 
     handleMessageSubmit = (e) => {
         if (!this.submitValidation()) {
             e.preventDefault();
+            this.clearMessageInput();
             return;
         }
 

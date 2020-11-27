@@ -169,6 +169,11 @@ button {
     max-width: 80%;
 }
 
+input:required {
+    border: 1px solid red;
+    outline: none;
+}
+
 .chat-input > button {
     flex-grow: 1;
     max-width: 20%;
