@@ -4,9 +4,6 @@ import './Styles.css';
 import Main from './components/Content/Main';
 import Login from './components/Content/Login';
 
-import Moment from 'react-moment';
-import 'moment-timezone';
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -43,13 +40,12 @@ class App extends Component {
         let messages = this.state.messages;
         let messageField = this.state.messageField;
         const userName = localStorage.getItem('user');
-        const created_at = new Date('1976-04-19T12:59-0500');
         let newMessages = [
             ...messages,
             {
                 text: messageField,
                 name: userName,
-                created_at: <Moment date={created_at} />,
+                created_at: new Date(),
             },
         ];
         this.setState({ messages: newMessages });
@@ -64,9 +60,8 @@ class App extends Component {
     };
 
     onKeyPress = (e) => {
-        /* UNCOMMENT ME ANDY!!!!!!
         if (!this.submitValidation()) return this.clearMessageInput();
-        */
+
         if (e.which === 13) {
             e.preventDefault();
             let messages = this.state.messages;

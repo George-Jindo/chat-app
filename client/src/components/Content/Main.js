@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Main.css';
 
+import moment from 'moment';
+
 class Main extends Component {
     render() {
         const messages = this.props.messages.map((messages) => {
@@ -8,7 +10,11 @@ class Main extends Component {
                 <div className='messages' key={messages.id}>
                     <header> {messages.name}</header>
                     <p>{messages.text}</p>
-                    <footer>{messages.created_at}</footer>
+                    <footer>
+                        {moment(messages.created_at).format(
+                            'MMM Do, h:mm:ss A'
+                        )}
+                    </footer>
                 </div>
             );
         });
