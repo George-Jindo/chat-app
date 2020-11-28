@@ -4,25 +4,15 @@ import './Styles.css';
 import Main from './components/Content/Main';
 import Login from './components/Content/Login';
 
+import Moment from 'react-moment';
+import 'moment-timezone';
+
 class App extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            messages: [
-                {
-                    id: 1,
-                    name: 'Tommy',
-                    text: 'Hello world!',
-                    created_at: 'Today at 5:00PM',
-                },
-                {
-                    id: 2,
-                    name: 'Mark',
-                    text: 'How are you doing Tommy?',
-                    created_at: 'Today at 5:01PM',
-                },
-            ],
+            messages: [],
             name: '',
             messageField: '',
             newMessages: '',
@@ -53,7 +43,15 @@ class App extends Component {
         let messages = this.state.messages;
         let messageField = this.state.messageField;
         const userName = localStorage.getItem('user');
-        let newMessages = [...messages, { text: messageField, name: userName }];
+        const created_at = new Date('1976-04-19T12:59-0500');
+        let newMessages = [
+            ...messages,
+            {
+                text: messageField,
+                name: userName,
+                created_at: <Moment date={created_at} />,
+            },
+        ];
         this.setState({ messages: newMessages });
 
         this.clearMessageInput();
