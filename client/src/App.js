@@ -26,7 +26,6 @@ class App extends Component {
             name: '',
             messageField: '',
             newMessages: '',
-            isLoggedIn: true,
         };
     }
 
@@ -55,7 +54,6 @@ class App extends Component {
         let messageField = this.state.messageField;
         const userName = localStorage.getItem('user');
         let newMessages = [...messages, { text: messageField, name: userName }];
-
         this.setState({ messages: newMessages });
 
         this.clearMessageInput();
@@ -68,11 +66,18 @@ class App extends Component {
     };
 
     onKeyPress = (e) => {
+        /* UNCOMMENT ME ANDY!!!!!!
+        if (!this.submitValidation()) return this.clearMessageInput();
+        */
         if (e.which === 13) {
             e.preventDefault();
             let messages = this.state.messages;
             let messageField = this.state.messageField;
-            let newMessages = [...messages, { text: messageField }];
+            const userName = localStorage.getItem('user');
+            let newMessages = [
+                ...messages,
+                { text: messageField, name: userName },
+            ];
             this.setState({ messages: newMessages });
 
             this.clearMessageInput();
