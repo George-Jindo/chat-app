@@ -3,12 +3,20 @@ import './Main.css';
 
 import moment from 'moment';
 
+import Button from '@material-ui/core/Button';
+
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
+import Divider from '@material-ui/core/Divider';
+
 class Main extends Component {
     render() {
-        const messages = this.props.messages.map((messages) => {
+        const messages = this.props.messages.map((messages, index) => {
             return (
-                <div className='messages' key={messages.id}>
-                    <header> {messages.name}</header>
+                <div className='messages' key={index}>
+                    <header> {messages.name}:</header>
                     <p>{messages.text}</p>
                     <footer>
                         {moment(messages.created_at).format(
@@ -22,18 +30,24 @@ class Main extends Component {
             <div className='container'>
                 <div className='navbarContainer'>
                     <div className='navbarLogo'>
-                        <h2>Chatterbox</h2>
+                        <h3>Chatterbox</h3>
                     </div>
+                    <i class='far fa-comments'></i>
+                    <Button>Log Out</Button>
                 </div>
                 <div className='main'>
                     <div className='side-menu'>
-                        <h3>Rooms</h3>
-                        <button className='rm-btn' href='#'>
-                            General
-                        </button>
-                        <button className='rm-btn' href='#'>
-                            <strong>+</strong>
-                        </button>
+                        <h4>online users</h4>
+                        <Divider />
+                        <List>
+                            {['George', 'Mark', 'Jenny', 'Thomas'].map(
+                                (user, i) => (
+                                    <ListItem key={i}>
+                                        <ListItemText primary={user} />
+                                    </ListItem>
+                                )
+                            )}
+                        </List>
                     </div>
                     <div className='chat-screen'>
                         <div className='chat-body'>{messages}</div>
@@ -44,6 +58,7 @@ class Main extends Component {
                                 onChange={this.props.handleChange}
                                 name='messageField'
                                 onKeyPress={this.props.onKeyPress}
+                                autoComplete='off'
                             ></input>
                             <button onClick={this.props.handleSubmit}>
                                 Send

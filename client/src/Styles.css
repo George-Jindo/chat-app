@@ -1,7 +1,21 @@
 body {
-    margin: 0;
-    background-color: #333;
-    /*font-family: 'Montserrat', sans-serif;*/
+    margin-top: 8vh !important;
+    /*background: url(background.jpg) !important;*/
+    background-color: #0093e9;
+    /*background-image: radial-gradient(
+        160deg,
+        #0093e9 50%,
+        #0cb9ff 80%
+    ) !important;*/
+    background-image: radial-gradient(
+            at center center,
+            #0094e97e 0%,
+            #000000b9 100%
+        ),
+        url(background.jpg) !important;
+    background-size: center;
+    background-position: center;
+    height: auto !important;
 }
 
 .ui.inverted.top.fixed.menu {

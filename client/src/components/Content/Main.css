@@ -19,14 +19,29 @@ a {
 }
 
 .navbarContainer {
-    background: #00c6ff;
-    background: -webkit-linear-gradient(to right, #00c6ff, #0072ff);
-    background: linear-gradient(to right, #00c6ff, #0072ff);
+    background: #0073ff31;
 
     min-height: 50px;
     z-index: 100;
-    box-shadow: 0 1px 2px 0 #01aeff;
+    box-shadow: 0 1px 2px 0 #0a8cd6;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.MuiButton-root {
+    padding-right: 1rem !important;
+}
+
+h3 {
+    font-family: 'Montserrat', 'Helvetica', 'Arial', sans-serif;
+    padding: 1rem;
+    color: rgb(233, 233, 233);
+}
+
+.far {
+    color: rgb(233, 233, 233) !important;
+    font-size: 30px;
 }
 
 .main {
@@ -37,26 +52,37 @@ a {
 }
 
 .side-menu {
-    background: #00c6ff;
-    background: -webkit-linear-gradient(to bottom, #00c6ff, #0072ff);
-    background: linear-gradient(to bottom, #00c6ff, #0072ff);
+    background: #0073ff31;
 
     min-width: 150px;
     max-width: 150px;
     z-index: 50;
-    box-shadow: 1px 0 2px 0 #01aeff;
+    box-shadow: 1px 0 2px 0 #0a8cd6;
     display: flex;
     flex-direction: column;
 }
 
-.side-menu > h3 {
-    color: white;
+.side-menu > h4 {
+    color: rgb(233, 233, 233);
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 14px;
     text-transform: uppercase;
+    padding-left: 1rem;
+    letter-spacing: 0.073em;
+}
+
+.MuiTypography-body1 {
+    font-size: 1rem;
+    font-family: 'Montserrat', 'Helvetica', 'Arial', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.073em !important;
+}
+
+span {
+    color: rgb(233, 233, 233);
 }
 
 .rm-btn {
@@ -103,7 +129,6 @@ button {
 }
 
 .chat-screen {
-    background-color: #eee;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -112,7 +137,7 @@ button {
 }
 
 .chat-body {
-    background-color: #eee;
+    background-color: rgba(218, 218, 218, 0.897);
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -148,12 +173,12 @@ button {
 }
 
 .messages > footer {
-    min-width: 60px;
+    min-width: 70px;
     text-align: center;
 }
 
 .chat-input {
-    background: #0072ff;
+    background: #0073ff52;
 
     min-height: 70px;
     z-index: 25;
@@ -161,10 +186,11 @@ button {
     display: flex;
     flex-direction: row;
     padding: 1rem;
+    flex-grow: 0;
 }
 
 .chat-input > input {
-    flex-grow: 2;
+    flex-grow: 1;
     outline: none;
     max-width: 80%;
 }
@@ -175,12 +201,13 @@ input:required {
 }
 
 .chat-input > button {
-    flex-grow: 1;
-    max-width: 20%;
+    flex-grow: 5;
+    max-width: 10vw;
+    min-width: 13vw;
     margin: 0.25rem;
     padding: 5px;
     border-radius: 0.3125rem;
-    background-color: #0375ff;
+    background-color: #0374ff86;
     border: solid 1px #fff;
     color: #fff;
     font-size: 18px;

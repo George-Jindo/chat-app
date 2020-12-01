@@ -4,6 +4,9 @@ import './Styles.css';
 import Main from './components/Content/Main';
 import Login from './components/Content/Login';
 
+//TODO: Display logged in users in Sidebar
+//TODO: Send created users to db
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -69,7 +72,7 @@ class App extends Component {
             const userName = localStorage.getItem('user');
             let newMessages = [
                 ...messages,
-                { text: messageField, name: userName },
+                { text: messageField, name: userName, created_at: new Date() },
             ];
             this.setState({ messages: newMessages });
 
