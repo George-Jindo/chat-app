@@ -13,9 +13,7 @@ class App extends Component {
 
         this.state = {
             messages: [],
-            name: '',
             messageField: '',
-            newMessages: '',
         };
     }
 
@@ -93,9 +91,11 @@ class App extends Component {
         const { name } = this.state;
         localStorage.setItem('user', name);
     };
+    // Login Handling End <--
 
+    // Lifecycle Components
     componentDidMount() {
-        const name = localStorage.getItem('user') || '';
+        const name = localStorage.getItem('user') || [];
         this.setState({ name });
     }
 
@@ -112,6 +112,7 @@ class App extends Component {
                     </Route>
                     <Route path='/chat' exact>
                         <Main
+                            name={this.state.name}
                             messages={this.state.messages}
                             messageField={this.state.messageField}
                             handleChange={this.handleMessageChange}
