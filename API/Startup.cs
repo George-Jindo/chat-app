@@ -29,7 +29,7 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddEntityFrameworkNpgsql().AddDbContext<ChatterboxContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("ChatterboxConnection")));
             services.AddCors(opt =>
             {
@@ -56,6 +56,11 @@ namespace API
                 //app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
+            app.UseCors("CorsPolicy");
+            //app.UseMvc();
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "client";
@@ -66,9 +71,7 @@ namespace API
                 }
             });
 
-            //app.UseHttpsRedirection();
-            app.UseCors("CorsPolicy");
-            app.UseMvc();
+
         }
     }
 }
