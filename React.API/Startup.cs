@@ -11,26 +11,35 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ChatAppData.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace React.API
 {
     public class Startup
     {
-        private readonly IConfiguration _configuration;
-
         public Startup(IConfiguration configuration)
         {
-            _configuration = configuration;
+            Configuration = configuration;
         }
+        public IConfiguration Configuration { get;  }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllers();
             services.AddSpaStaticFiles(config  =>
             {
                 config.RootPath = "client/build";
             });
+            services.AddSignalR(hubOptions =>
+            {
+                hubOptions.EnableDetailedErrors = true;
+            });
+            services.AddDbContext<ChatAppContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +63,7 @@ namespace React.API
                 endpoints.MapControllers();
             });
 
-            app.UseSpa(configuration: spa => 
+            app.UseSpa(configuration: spa =>
             {
                 spa.Options.SourcePath = "client";
                 if (env.IsDevelopment())
@@ -62,6 +71,8 @@ namespace React.API
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            app.UseSignalR(routes => { routes.MapHub<ChatHub>("/hub/chat"); });
         }
     }
 }

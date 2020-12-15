@@ -13,12 +13,12 @@ using Newtonsoft.Json;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
+    [System.Web.Http.Route("api/[controller]")]
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
 
-        [HttpPost]
+        [System.Web.Http.HttpPost]
         public ActionResult<Response> Get()
         {
             return new Response
