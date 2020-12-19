@@ -12,9 +12,11 @@ namespace ChatAppData.Models
 
         public Guid Id { get; private set; }
 
-        public DateTime CreatedOn { get; private set; }
+        public DateTime Created_at { get; private set; }
 
         public string Username { get; set; }
+
+        public string Email { get; set; }
     }
 
     

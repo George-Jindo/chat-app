@@ -1,9 +1,10 @@
-﻿using ChatAppData.Models.ModelConfigurations;
+﻿using ChatAppData.Models;
 using IdentityServer4.EntityFramework.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Npgsql;
 
 namespace ChatAppData.Models
 {
@@ -12,16 +13,13 @@ namespace ChatAppData.Models
         public ChatAppContext(DbContextOptions<ChatAppContext> options)
                 : base(options)
         {
+            var conn = new NpgsqlConnection();
+            conn.Open();
 
-        }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.ApplyConfiguration(new UserConfiguration());
-            builder.ApplyConfiguration(new MessageConfiguration());
+            _ = conn;
         }
 
         public DbSet<Users> Users { get; set; }
-        public DbSet<Messages> Messages { get; set; }
+        public DbSet<Message> Message { get; set; }
     }
 }

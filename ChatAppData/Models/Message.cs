@@ -4,15 +4,17 @@ using System.Text;
 
 namespace ChatAppData.Models
 {
-    public class Messages
+    public class Message
     {
-        public Messages()
+        public Message()
         {
         }
 
         public Guid Id { get; private set; }
 
-        public DateTime CreatedOn { get; private set; }
+        public Guid User_id { get; private set; }
+
+        public DateTime Created_at { get; private set; }
 
         public string Text { get; set; }
     }

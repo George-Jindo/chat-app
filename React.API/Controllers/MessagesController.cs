@@ -22,7 +22,7 @@ namespace React.API.Controllers
         [HttpGet]
         public IActionResult GetMessage()
         {
-            var messages = Context.Messages.ToList();
+            var messages = Context.Message.ToList();
 
             return Ok(messages);
         }
@@ -30,7 +30,7 @@ namespace React.API.Controllers
         [HttpPost]
         public IActionResult CreateMessage()
         {
-            var messages = new Messages()
+            var messages = new Message()
             {
                 Text = "This is a sample message"
             };
