@@ -5,7 +5,10 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "React.API", "React.API\React.API.csproj", "{44B78A95-0A10-425C-9D6D-AA875713579F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatAppData", "ChatAppData\ChatAppData.csproj", "{54EF4B2F-68C6-45B5-A716-4D2087816247}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80AE8965-6990-4E05-ACD5-30D4AFC2E173}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,18 +32,6 @@ Global
 		{44B78A95-0A10-425C-9D6D-AA875713579F}.Release|x64.Build.0 = Release|Any CPU
 		{44B78A95-0A10-425C-9D6D-AA875713579F}.Release|x86.ActiveCfg = Release|Any CPU
 		{44B78A95-0A10-425C-9D6D-AA875713579F}.Release|x86.Build.0 = Release|Any CPU
-		{54EF4B2F-68C6-45B5-A716-4D2087816247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54EF4B2F-68C6-45B5-A716-4D2087816247}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54EF4B2F-68C6-45B5-A716-4D2087816247}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{54EF4B2F-68C6-45B5-A716-4D2087816247}.Debug|x64.Build.0 = Debug|Any CPU
-		{54EF4B2F-68C6-45B5-A716-4D2087816247}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{54EF4B2F-68C6-45B5-A716-4D2087816247}.Debug|x86.Build.0 = Debug|Any CPU
-		{54EF4B2F-68C6-45B5-A716-4D2087816247}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54EF4B2F-68C6-45B5-A716-4D2087816247}.Release|Any CPU.Build.0 = Release|Any CPU
-		{54EF4B2F-68C6-45B5-A716-4D2087816247}.Release|x64.ActiveCfg = Release|Any CPU
-		{54EF4B2F-68C6-45B5-A716-4D2087816247}.Release|x64.Build.0 = Release|Any CPU
-		{54EF4B2F-68C6-45B5-A716-4D2087816247}.Release|x86.ActiveCfg = Release|Any CPU
-		{54EF4B2F-68C6-45B5-A716-4D2087816247}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

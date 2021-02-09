@@ -11,8 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using ChatAppData.Models;
-using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
 namespace React.API
@@ -39,7 +37,6 @@ namespace React.API
             {
                 hubOptions.EnableDetailedErrors = true;
             });
-            services.AddDbContext<ChatAppContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,8 +68,6 @@ namespace React.API
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
-
-            app.UseSignalR(routes => { routes.MapHub<ChatHub>("/hub/chat"); });
         }
     }
 }
