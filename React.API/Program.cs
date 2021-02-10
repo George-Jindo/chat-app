@@ -16,26 +16,17 @@ namespace React.API
     {
         public static void Main(string[] args)
         {
-            //CreateHostBuilder(args).Build().Run();
             
-            Console.WriteLine("Hello World!");
+            CreateHostBuilder(args).Build().Run();
 
-            var userQueryService = new UserQueryService();
-
-            var users = userQueryService.QueryUsers();
-
-            users.ForEach(users => Console.WriteLine(users.Username));
-
-            Console.ReadLine();
-            
         }
 
-        /*public static IHostBuilder CreateHostBuilder(string[] args) =>
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });*/
+                });
     }
 
 }

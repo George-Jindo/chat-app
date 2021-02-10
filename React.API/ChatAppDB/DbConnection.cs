@@ -12,7 +12,7 @@ namespace React.API.ChatAppDB
         {
             var connString = "Host=localhost;Username=gjindo;Password=CamaroZ28;Database=Chatapp";
 
-            using var conn = new NpgsqlConnection(connString);
+            var conn = new NpgsqlConnection(connString);
             conn.Open();
 
             return conn;

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using React.API.ChatAppDB;
+using System;
 
 namespace React.API.Controllers
 {
@@ -11,6 +8,19 @@ namespace React.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        [HttpGet]
+
+        public IActionResult GetUser()
+        {
+            var userQueryService = new UserQueryService();
+
+            var users = userQueryService.QueryUsers();
+
+            users.ForEach(u => Console.WriteLine(u.Username));
+
+            return Ok(users);
+        }
+
         
     }
     
