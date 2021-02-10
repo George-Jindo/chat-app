@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 import './Main.css';
 import { withRouter } from 'react-router-dom';
 
@@ -16,6 +17,14 @@ class Main extends Component {
         this.setState({ name });
         this.props.history.push('/');
     };
+
+    async componentDidMount() {
+        const { data } = await Axios.get('/api/users');
+        this.setState({ users: data });
+
+        console.log(data);
+    }
+
     render() {
         const messages = this.props.messages.map((messages, index) => {
             return (
