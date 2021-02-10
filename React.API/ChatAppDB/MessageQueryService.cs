@@ -3,36 +3,37 @@ using System.Collections.Generic;
 
 namespace React.API.ChatAppDB
 {
-    public class UserQueryService
+    public class MessageQueryService
     {
-        public List<User> QueryUsers()
+        public List<Message> QueryMessages()
         {
             var dbConnection = new DbConnection();
 
             var conn = dbConnection.GetConnection();
 
-            var users = new List<User>();
+            var messages = new List<Message>();
 
-            using var cmd = new NpgsqlCommand("SELECT * FROM users;", conn);
+            using var cmd = new NpgsqlCommand("SELECT * FROM message;", conn);
 
             using (var reader = cmd.ExecuteReader())
             {
                 // looping through each row
                 while (reader.Read())
                 {
-                    var user = new User
+                    var message = new Message
                     {
                         Id = reader.GetGuid(0),
-                        Username = reader.GetString(1),
-                        Email = reader.GetString(2),
-                        Created_At = reader.GetDateTime(3)
+                        User_Id = reader.GetGuid(1),
+                        Text = reader.GetString(2),
+                        Creadted_At = reader.GetDateTime(3)
                     };
 
-                    users.Add(user);
+                    messages.Add(message);
                 }
 
-                return users;
+                return messages;
             }
         }
+
     }
 }

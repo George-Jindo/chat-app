@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using React.API.ChatAppDB;
 using System;
+using System.Collections.Generic;
 
 namespace React.API.Controllers
 {

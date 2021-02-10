@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using React.API.ChatAppDB;
 
 namespace React.API.Controllers
 {
@@ -16,23 +13,13 @@ namespace React.API.Controllers
         [HttpGet]
         public IActionResult GetMessage()
         {
-            //var messages = Message.ToList();
+            var messageQueryService = new MessageQueryService();
 
-            return Ok();
-        }
+            var messages = messageQueryService.QueryMessages();
 
-        [HttpPost]
-        public IActionResult CreateMessage()
-        {
-            //var messages = new Message()
-            {
-                //Text = "This is a sample message"
-            };
+            messages.ForEach(m => Console.WriteLine(m.Text));
 
-            //Context.Add(messages);
-            //Context.SaveChanges();
-
-            return Ok("Message added successfully!");
+            return Ok(messages);
         }
     }
 }
