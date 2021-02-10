@@ -8,6 +8,6 @@ namespace React.API.ChatAppDB
 
         public Guid User_Id { get; set; }
         public string Text { get; set; }
-        public DateTime Creadted_At { get; set; }
+        public DateTime Created_At { get; set; }
     }
 }

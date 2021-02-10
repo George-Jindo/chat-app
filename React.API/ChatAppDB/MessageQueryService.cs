@@ -25,7 +25,7 @@ namespace React.API.ChatAppDB
                         Id = reader.GetGuid(0),
                         User_Id = reader.GetGuid(1),
                         Text = reader.GetString(2),
-                        Creadted_At = reader.GetDateTime(3)
+                        Created_At = reader.GetDateTime(3)
                     };
 
                     messages.Add(message);
