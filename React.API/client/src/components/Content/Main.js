@@ -12,6 +12,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 
 class Main extends Component {
+    state = {
+        users: [],
+    };
+
     isLoggedOut = () => {
         const name = localStorage.removeItem('user') || [];
         this.setState({ name });
@@ -40,7 +44,7 @@ class Main extends Component {
             );
         });
 
-        const users = this.props.name;
+        //const users = this.props.name;
 
         return (
             <div className='container'>
@@ -58,9 +62,9 @@ class Main extends Component {
                         <h4>online users</h4>
                         <Divider />
                         <List>
-                            {[users].map((user, i) => (
+                            {this.state.users.map((user, i) => (
                                 <ListItem key={i}>
-                                    <ListItemText primary={user} />
+                                    <ListItemText primary={user.username} />
                                 </ListItem>
                             ))}
                         </List>
