@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import './Main.css';
 import { withRouter } from 'react-router-dom';
 
@@ -14,6 +14,7 @@ import Divider from '@material-ui/core/Divider';
 class Main extends Component {
     state = {
         users: [],
+        messages: [],
     };
 
     isLoggedOut = () => {
@@ -23,14 +24,21 @@ class Main extends Component {
     };
 
     async componentDidMount() {
-        const { data } = await Axios.get('/api/users');
-        this.setState({ users: data });
+        // Make multiple API calls
+        const [userResponse, messageResponse] = await Promise.all([
+            axios.get('/api/users'),
+            axios.get('/api/messages'),
+        ]);
 
-        console.log(data);
+        this.setState({
+            users: userResponse.data,
+            messages: messageResponse.data,
+        });
+        console.log(userResponse.data, messageResponse.data);
     }
 
     render() {
-        const messages = this.props.messages.map((messages, index) => {
+        const messages = this.state.messages.map((messages, index) => {
             return (
                 <div className='messages' key={index}>
                     <header> {messages.name}:</header>
