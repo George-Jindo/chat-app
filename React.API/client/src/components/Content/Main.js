@@ -25,7 +25,13 @@ class Main extends Component {
 
     async componentDidMount() {
         // Make multiple API calls
-        const [userResponse, messageResponse] = await Promise.all([
+        const users = await axios.get('/api/users');
+        const messages = await axios.get('/api/messages');
+        this.setState({ users: users.data, messages: messages.data });
+
+        console.log({ users, messages });
+
+        /*const [userResponse, messageResponse] = await Promise.all([
             axios.get('/api/users'),
             axios.get('/api/messages'),
         ]);
@@ -34,14 +40,16 @@ class Main extends Component {
             users: userResponse.data,
             messages: messageResponse.data,
         });
-        console.log(userResponse.data, messageResponse.data);
+        console.log(userResponse.data, messageResponse.data);*/
     }
 
     render() {
+        // TODO: Question 1 right below. users and messages not defined.
+        //const messageUser = users.find((user) => user.id === message.userId);
         const messages = this.state.messages.map((messages, index) => {
             return (
                 <div className='messages' key={index}>
-                    <header> {messages.name}:</header>
+                    <header> {messages.username}:</header>
                     <p>{messages.text}</p>
                     <footer>
                         {moment(messages.created_at).format(

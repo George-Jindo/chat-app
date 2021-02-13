@@ -13,7 +13,7 @@ namespace React.API.ChatAppDB
 
             var messages = new List<Message>();
 
-            using var cmd = new NpgsqlCommand("SELECT * FROM message;", conn);
+            using var cmd = new NpgsqlCommand("SELECT * FROM message INNER JOIN users ON users.id = message.user_id;", conn);
 
             using (var reader = cmd.ExecuteReader())
             {
