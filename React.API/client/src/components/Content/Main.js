@@ -30,17 +30,6 @@ class Main extends Component {
         this.setState({ users: users.data, messages: messages.data });
 
         console.log({ users, messages });
-
-        /*const [userResponse, messageResponse] = await Promise.all([
-            axios.get('/api/users'),
-            axios.get('/api/messages'),
-        ]);
-
-        this.setState({
-            users: userResponse.data,
-            messages: messageResponse.data,
-        });
-        console.log(userResponse.data, messageResponse.data);*/
     }
 
     render() {
@@ -49,7 +38,7 @@ class Main extends Component {
         const messages = this.state.messages.map((messages, index) => {
             return (
                 <div className='messages' key={index}>
-                    <header> {messages.username}:</header>
+                    <header> {messages.name}:</header>
                     <p>{messages.text}</p>
                     <footer>
                         {moment(messages.created_at).format(
@@ -59,8 +48,6 @@ class Main extends Component {
                 </div>
             );
         });
-
-        //const users = this.props.name;
 
         return (
             <div className='container'>
