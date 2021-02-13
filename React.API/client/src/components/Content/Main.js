@@ -33,19 +33,16 @@ class Main extends Component {
     }
 
     render() {
-        // TODO: Question 1 right below. users and messages not defined.
-
         const messages = this.state.messages.map((message, index) => {
-            //debugger;
             const messageUser = this.state.users.find(
-                (user) => user.id === message.user_id
+                (user) => user.id === message.userId
             );
             return (
                 <div className='messages' key={index}>
                     <header> {messageUser.username}:</header>
                     <p>{message.text}</p>
                     <footer>
-                        {moment(message.created_at).format('MMM Do, h:mm:ss A')}
+                        {moment(message.createdAt).format('MMM Do, h:mm:ss A')}
                     </footer>
                 </div>
             );
