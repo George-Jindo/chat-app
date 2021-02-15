@@ -8,7 +8,7 @@ namespace React.API.Controllers
     [ApiController]
     public class MessagesController : ControllerBase
     {
-        
+
 
         [HttpGet]
         public IActionResult GetMessage()
@@ -18,6 +18,19 @@ namespace React.API.Controllers
             var messages = messageQueryService.QueryMessages();
 
             messages.ForEach(m => Console.WriteLine(m.Text));
+
+            return Ok(messages);
+        }
+
+        [HttpPost]
+
+        public IActionResult PostMessage()
+        {
+            var messageQueryService = new MessageQueryService();
+
+            var messages = messageQueryService.CreateMessages();
+
+            Console.WriteLine("Message added succesfully");
 
             return Ok(messages);
         }

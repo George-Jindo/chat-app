@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 
 namespace React.API.ChatAppDB
@@ -33,6 +34,19 @@ namespace React.API.ChatAppDB
 
                 return messages;
             }
+        }
+
+        public List<Message> CreateMessages()
+        {
+            var dbConnection = new DbConnection();
+
+            var conn = dbConnection.GetConnection();
+
+            var messages = new List<Message>();
+
+            using var cmd = new NpgsqlCommand("INSERT INTO message (user_id, text, created_at) VALUES ('21735cff-8f33-4c1b-a24d-74b3e544375d', 'It is going just fine, thanks', NOW());", conn);
+            cmd.ExecuteNonQuery();
+
         }
 
     }
