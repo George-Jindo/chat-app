@@ -22,13 +22,9 @@ namespace React.API.Controllers
             var email = registrationInput.Email;
             var password = registrationInput.Password;
 
-            var messageQueryService = new MessageQueryService();
-
-            var messages = messageQueryService.CreateMessages();
-
             Console.WriteLine("User created succesfully");
 
-            return Ok(messages);
+            return Ok(username);
         }
     }
 
