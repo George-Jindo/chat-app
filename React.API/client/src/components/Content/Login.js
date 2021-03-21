@@ -91,12 +91,6 @@ class Login extends Component {
                                     placeholder='Enter Username'
                                     onChange={this.props.handleLoginChange}
                                 />
-                                <CustomTextInput
-                                    label='Password'
-                                    name='password'
-                                    type='password'
-                                    placeholder='Enter Password'
-                                />
                                 <button
                                     type='submit'
                                     onClick={this.props.handleLoginSubmit}
@@ -115,8 +109,6 @@ class Login extends Component {
                         initialValues={{
                             name: this.props.user,
                             email: '',
-                            password: '',
-                            confirmPassword: '',
                         }}
                         validationSchema={Yup.object({
                             name: Yup.string()
@@ -125,13 +117,6 @@ class Login extends Component {
                                 .required('Required'),
                             email: Yup.string()
                                 .email('Invalid email address')
-                                .required('Required'),
-                            password: Yup.string().required('Required'),
-                            confirmPassword: Yup.string()
-                                .oneOf(
-                                    [Yup.ref('password'), ''],
-                                    'Passwords must match'
-                                )
                                 .required('Required'),
                         })}
                         onSubmit={(values, { setSubmitting, resetForm }) => {
@@ -172,18 +157,6 @@ class Login extends Component {
                                     name='email'
                                     type='email'
                                     placeholder='New Email'
-                                />
-                                <CustomTextInput
-                                    label='Password'
-                                    name='password'
-                                    type='password'
-                                    placeholder='Enter Password'
-                                />
-                                <CustomTextInput
-                                    label='Confirm Password'
-                                    name='confirmPassword'
-                                    type='password'
-                                    placeholder='Confirm Password'
                                 />
                                 <button
                                     type='submit'

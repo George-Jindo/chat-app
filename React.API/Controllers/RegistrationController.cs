@@ -20,21 +20,25 @@ namespace React.API.Controllers
 
             var username = registrationInput.Username;
             var email = registrationInput.Email;
-            var password = registrationInput.Password;
 
             Console.WriteLine("User created succesfully");
 
-            return Ok(username);
+            return Ok(new RegistrationModel { 
+                UserID = Guid.NewGuid(), 
+                Username = username
+            });
         }
+    }
+
+    public class RegistrationModel
+    {
+        public Guid UserID { get; set; }
+        public string Username { get; set; }
     }
 
     public class RegistrationInput
     {
-        public Guid Id { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
-
-        public string Password { get; set; }
-        public DateTime Created_At { get; set; }
     }
 }
