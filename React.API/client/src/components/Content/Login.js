@@ -44,21 +44,17 @@ class Login extends Component {
                         enableReinitialize
                         initialValues={{
                             name: this.props.user,
-                            password: '',
                         }}
                         validationSchema={Yup.object({
                             name: Yup.string()
                                 .min(3, 'Must be at least 3 characters long')
                                 .max(15, 'Must not exceed 15 characters')
                                 .required('Required'),
-                            password: Yup.string().required('Required'),
                         })}
                         onSubmit={(values, { setSubmitting, resetForm }) => {
                             setTimeout(() => {
                                 axios
-                                    .post(
-                                        'http://localhost:5000/api/authenticate'
-                                    )
+                                    .post('https://localhost:5001/api/')
                                     .then((res) => {
                                         if (res.data.isSuccessful === true) {
                                             alert(
@@ -124,7 +120,7 @@ class Login extends Component {
                                 // TODO: SEND POST REQUEST API
                                 axios
                                     .post(
-                                        'http://localhost:5000/api/users',
+                                        'https://localhost:5001/api/registration',
                                         values,
                                         null,
                                         2
@@ -133,7 +129,6 @@ class Login extends Component {
                                         console.log(res);
                                         console.log(res.data);
                                     });
-                                //alert(JSON.stringify(values, null, 2));
                                 resetForm();
                                 setSubmitting(false);
 
