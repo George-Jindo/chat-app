@@ -4,9 +4,6 @@ import './Styles.css';
 import Main from './components/Content/Main';
 import Login from './components/Content/Login';
 
-//TODO: Display logged in users in Sidebar
-//TODO: Send created users to db
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -67,7 +64,7 @@ class App extends Component {
             e.preventDefault();
             let messages = this.state.messages;
             let messageField = this.state.messageField;
-            const userName = localStorage.getItem('user');
+            const userName = localStorage.getItem('username');
             let newMessages = [
                 ...messages,
                 { text: messageField, name: userName, created_at: new Date() },
@@ -89,13 +86,13 @@ class App extends Component {
 
     handleLoginSubmit = (e) => {
         const { name } = this.state;
-        localStorage.setItem('user', name);
+        localStorage.setItem('username', name);
     };
     // Login Handling End <--
 
     // Lifecycle Components
     componentDidMount() {
-        const name = localStorage.getItem('user') || [];
+        const name = localStorage.getItem('username') || [];
         this.setState({ name });
     }
 

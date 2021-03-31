@@ -18,7 +18,7 @@ class Main extends Component {
     };
 
     isLoggedOut = () => {
-        const name = localStorage.removeItem('user') || [];
+        const name = localStorage.removeItem('username') || [];
         this.setState({ name });
         this.props.history.push('/');
     };
