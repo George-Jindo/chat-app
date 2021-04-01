@@ -21,6 +21,9 @@ namespace React.API.Controllers
             var username = registrationInput.Username;
             var email = registrationInput.Email;
 
+            var registrationQueryService = new RegistrationQueryService();
+            var users = registrationQueryService.CreateRegistration(username, email);
+
             Console.WriteLine("User created succesfully");
 
             return Ok(new RegistrationModel { 
