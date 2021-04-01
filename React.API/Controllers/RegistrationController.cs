@@ -25,7 +25,8 @@ namespace React.API.Controllers
 
             return Ok(new RegistrationModel { 
                 UserID = Guid.NewGuid(), 
-                Username = username
+                Username = username,
+                Email = email
             });
         }
     }
@@ -34,6 +35,8 @@ namespace React.API.Controllers
     {
         public Guid UserID { get; set; }
         public string Username { get; set; }
+
+        public string Email { get; set; }
     }
 
     public class RegistrationInput
