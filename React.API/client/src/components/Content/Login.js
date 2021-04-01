@@ -103,11 +103,11 @@ class Login extends Component {
                     <Formik
                         enableReinitialize
                         initialValues={{
-                            name: this.props.user,
+                            username: this.props.user,
                             email: '',
                         }}
                         validationSchema={Yup.object({
-                            name: Yup.string()
+                            username: Yup.string()
                                 .min(3, 'Must be at least 3 characters long')
                                 .max(15, 'Must not exceed 15 characters')
                                 .required('Required'),
