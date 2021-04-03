@@ -36,7 +36,7 @@ namespace React.API.ChatAppDB
             }
         }
 
-        public List<Message> CreateMessages(string text)
+        public List<Message> CreateMessages(Guid userId, string text)
         {
             var dbConnection = new DbConnection();
 
@@ -44,9 +44,10 @@ namespace React.API.ChatAppDB
 
             var messages = new List<Message>();
 
-            using var cmd = new NpgsqlCommand("INSERT INTO message (text, created_at) VALUES (@t, NOW());", conn);
+            using var cmd = new NpgsqlCommand("INSERT INTO message (user_id, text, created_at) VALUES (@ui, @t, NOW());", conn);
             {
                 cmd.Parameters.AddWithValue("t", text);
+                cmd.Parameters.AddWithValue("ui", userId);
                 cmd.ExecuteNonQuery();
             }
 

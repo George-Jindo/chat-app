@@ -27,9 +27,10 @@ namespace React.API.Controllers
         public IActionResult PostMessage([FromBody] Message message)
         {
             var text = message.Text;
+            var userId = message.UserId;
             var messageQueryService = new MessageQueryService();
 
-            var messages = messageQueryService.CreateMessages(text);
+            var messages = messageQueryService.CreateMessages(userId, text);
                   
 
             Console.WriteLine("Message added succesfully");
