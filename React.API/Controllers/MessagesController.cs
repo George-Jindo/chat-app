@@ -24,15 +24,20 @@ namespace React.API.Controllers
 
         [HttpPost]
 
-        public IActionResult PostMessage()
+        public IActionResult PostMessage([FromBody] Message message)
         {
+            var text = message.Text;
             var messageQueryService = new MessageQueryService();
 
-            var messages = messageQueryService.CreateMessages();
+            var messages = messageQueryService.CreateMessages(text);
+                  
 
             Console.WriteLine("Message added succesfully");
 
-            return Ok(messages);
+            return Ok(new MessageModel
+            {
+                Text = text
+            });
         }
     }
 }

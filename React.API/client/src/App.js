@@ -4,6 +4,8 @@ import './Styles.css';
 import Main from './components/Content/Main';
 import Login from './components/Content/Login';
 
+import axios from 'axios';
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -47,6 +49,13 @@ class App extends Component {
             },
         ];
         this.setState({ messages: newMessages });
+
+        console.log(newMessages);
+
+        axios.post('https://localhost:5001/api/messages').then((res) => {
+            console.log(res);
+            console.log(res.data);
+        });
 
         this.clearMessageInput();
     };

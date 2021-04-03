@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using React.API.ChatAppDB;
 
@@ -15,7 +11,7 @@ namespace React.API.Controllers
 
         [HttpPost]
 
-        public IActionResult PostMessage([FromBody] RegistrationInput registrationInput)
+        public IActionResult PostRegistration([FromBody] RegistrationInput registrationInput)
         {
 
             var username = registrationInput.Username;
