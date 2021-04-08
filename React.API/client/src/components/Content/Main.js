@@ -29,6 +29,13 @@ class Main extends Component {
         const messages = await axios.get('/api/messages');
         this.setState({ users: users.data, messages: messages.data });
 
+        setInterval(() => {
+            axios.get('/api/messages').then((res2) => {
+                console.log('messages rendered in 5 seconds');
+                this.setState({ messages: res2.data });
+            });
+        }, 5000);
+
         console.log({ users, messages });
     }
 

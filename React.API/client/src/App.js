@@ -101,13 +101,6 @@ class App extends Component {
     componentDidMount() {
         const name = localStorage.getItem('username') || [];
         this.setState({ name });
-
-        setInterval(() => {
-            axios.get('/api/messages').then((res2) => {
-                console.log('messages rendered in 5 seconds');
-                this.setState({ messages: res2.data });
-            });
-        }, 5000);
     }
 
     render() {
