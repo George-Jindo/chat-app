@@ -36,25 +36,11 @@ class App extends Component {
             this.clearMessageInput();
             return;
         }
-
-        let messages = this.state.messages;
-        let messageField = this.state.messageField;
-        const userName = localStorage.getItem('user');
-        let newMessages = [
-            ...messages,
-            {
-                text: messageField,
-                name: userName,
-                created_at: new Date(),
-            },
-        ];
-        this.setState({ messages: newMessages });
-
-        console.log(newMessages);
-
         axios.post('https://localhost:5001/api/messages').then((res) => {
-            console.log(res);
-            console.log(res.data);
+            // retrieve messages
+            axios.get('https://localhost:5001/api/messages').then((res2) => {
+                this.setState({ messages: res2.data });
+            });
         });
 
         this.clearMessageInput();
@@ -71,14 +57,14 @@ class App extends Component {
 
         if (e.which === 13) {
             e.preventDefault();
-            let messages = this.state.messages;
-            let messageField = this.state.messageField;
-            const userName = localStorage.getItem('username');
-            let newMessages = [
-                ...messages,
-                { text: messageField, name: userName, created_at: new Date() },
-            ];
-            this.setState({ messages: newMessages });
+            axios.post('https://localhost:5001/api/messages').then((res) => {
+                // retrieve messages
+                axios
+                    .get('https://localhost:5001/api/messages')
+                    .then((res2) => {
+                        this.setState({ messages: res2.data });
+                    });
+            });
 
             this.clearMessageInput();
         }
@@ -103,6 +89,12 @@ class App extends Component {
     componentDidMount() {
         const name = localStorage.getItem('username') || [];
         this.setState({ name });
+
+        setTimeout(() => {
+            axios.get('https://localhost:5001/api/messages').then((res2) => {
+                this.setState({ messages: res2.data });
+            });
+        }, 5000);
     }
 
     render() {
