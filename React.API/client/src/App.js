@@ -36,10 +36,17 @@ class App extends Component {
             this.clearMessageInput();
             return;
         }
-        axios.post('https://localhost:5001/api/messages').then((res) => {
+
+        const headers = {
+            'Content-Type': 'application/json; charset=utf-8',
+        };
+        axios.post('/api/messages').then((res) => {
+            headers: headers;
+            console.log('message sent');
             // retrieve messages
-            axios.get('https://localhost:5001/api/messages').then((res2) => {
-                this.setState({ messages: res2.data });
+            axios.get('/api/messages').then((res2) => {
+                console.log('message received');
+                this.setState({ messages: [res2.data] });
             });
         });
 
@@ -57,13 +64,11 @@ class App extends Component {
 
         if (e.which === 13) {
             e.preventDefault();
-            axios.post('https://localhost:5001/api/messages').then((res) => {
+            axios.post('/api/messages').then((res) => {
                 // retrieve messages
-                axios
-                    .get('https://localhost:5001/api/messages')
-                    .then((res2) => {
-                        this.setState({ messages: res2.data });
-                    });
+                axios.get('/api/messages').then((res2) => {
+                    this.setState({ messages: res2.data });
+                });
             });
 
             this.clearMessageInput();
@@ -91,7 +96,8 @@ class App extends Component {
         this.setState({ name });
 
         setTimeout(() => {
-            axios.get('https://localhost:5001/api/messages').then((res2) => {
+            axios.get('/api/messages').then((res2) => {
+                console.log('messages rendered in 5 seconds');
                 this.setState({ messages: res2.data });
             });
         }, 5000);
