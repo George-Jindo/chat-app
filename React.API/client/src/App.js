@@ -37,11 +37,18 @@ class App extends Component {
             return;
         }
 
-        const headers = {
-            'Content-Type': 'application/json; charset=utf-8',
+        const body = {
+            userId: '9f358098-1487-4f84-be7d-a0aad493070c',
+            text: this.state.messageField,
         };
-        axios.post('/api/messages').then((res) => {
-            headers: headers;
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+        };
+
+        axios.post('/api/messages', body, config).then((res) => {
             console.log('message sent');
             // retrieve messages
             axios.get('/api/messages').then((res2) => {
