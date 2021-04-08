@@ -53,7 +53,7 @@ class App extends Component {
             // retrieve messages
             axios.get('/api/messages').then((res2) => {
                 console.log('message received');
-                this.setState({ messages: [res2.data] });
+                this.setState({ messages: res2.data });
             });
         });
 
@@ -102,7 +102,7 @@ class App extends Component {
         const name = localStorage.getItem('username') || [];
         this.setState({ name });
 
-        setTimeout(() => {
+        setInterval(() => {
             axios.get('/api/messages').then((res2) => {
                 console.log('messages rendered in 5 seconds');
                 this.setState({ messages: res2.data });
