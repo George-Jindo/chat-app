@@ -1,11 +1,13 @@
-﻿using Npgsql;
+﻿using Microsoft.AspNetCore.Mvc;
+using Npgsql;
+using System;
 using System.Collections.Generic;
 
 namespace React.API.ChatAppDB
 {
     public class UserQueryService
     {
-        public List<User> QueryUsers()
+        public List<User> QueryUsers(string username)
         {
             var dbConnection = new DbConnection();
 
@@ -13,7 +15,12 @@ namespace React.API.ChatAppDB
 
             var users = new List<User>();
 
-            using var cmd = new NpgsqlCommand("SELECT * FROM users;", conn);
+            using var cmd = new NpgsqlCommand("SELECT * FROM users WHERE username = @u;", conn);
+
+            {
+                cmd.Parameters.AddWithValue("u", username);
+                cmd.ExecuteNonQuery();
+            }
 
             using (var reader = cmd.ExecuteReader())
             {
@@ -33,6 +40,31 @@ namespace React.API.ChatAppDB
 
                 return users;
             }
+        }
+
+        public List<User> GetUserAuthentication(string userId)
+        {
+            var dbConnection = new DbConnection();
+
+            var conn = dbConnection.GetConnection();
+
+            var users = new List<User>();
+
+            using var cmd = new NpgsqlCommand("SELECT * FROM users WHERE user_id = @ui;", conn);
+
+            {
+                cmd.Parameters.AddWithValue("ui", userId);
+                cmd.ExecuteNonQuery();
+            }
+
+            return users;
+        }
+
+
+
+        internal object CreateAuthentication(string username)
+        {
+            throw new NotImplementedException();
         }
     }
 }
