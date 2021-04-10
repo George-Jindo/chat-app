@@ -32,6 +32,10 @@ class Login extends Component {
         this.container.current.classList.remove('right-panel-active');
     };
 
+    clickSignIn = () => {
+        document.querySelector('#signIn').click();
+    };
+
     render() {
         return (
             <div
@@ -54,25 +58,19 @@ class Login extends Component {
                         onSubmit={(values, { setSubmitting, resetForm }) => {
                             setTimeout(() => {
                                 axios
-                                    .post('https://localhost:5001/api/')
+                                    .post(
+                                        'https://localhost:5001/api/users',
+                                        values,
+                                        null,
+                                        2
+                                    )
                                     .then((res) => {
-                                        if (res.data.isSuccessful === true) {
-                                            alert(
-                                                JSON.stringify(values, null, 2)
-                                            );
-                                            resetForm();
-                                            setSubmitting(false);
-
-                                            this.props.history.push('/chat');
-                                        } else {
-                                            resetForm();
-                                            alert(
-                                                'Error Message: ' +
-                                                    res.data.errorMessage
-                                            );
-                                        }
+                                        console.log(res);
+                                        console.log(res.data);
                                     });
-                                // TODO: ESTABLISH DB CONNECTION
+                                resetForm();
+                                setSubmitting(false);
+                                this.props.history.push('/chat');
                             }, 3000);
                         }}
                     >
@@ -132,8 +130,13 @@ class Login extends Component {
                                 resetForm();
                                 setSubmitting(false);
 
-                                this.props.history.push('/chat');
-                            }, 3000);
+                                {
+                                    this.clickSignIn();
+                                }
+                                alert(
+                                    'Thank you for joining Chatterbox. Please sign in with your new username.'
+                                );
+                            }, 2000);
                         }}
                     >
                         {(props) => (
