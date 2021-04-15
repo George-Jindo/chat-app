@@ -17,7 +17,7 @@ namespace React.API.Controllers
 
             var users = userQueryService.QueryUsers();
 
-            users.ForEach(u => Console.WriteLine(u.Username));
+            //users.ForEach(u => Console.WriteLine(u.Username));
 
             return Ok(users);
         }
