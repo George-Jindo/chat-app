@@ -48,12 +48,14 @@ class Login extends Component {
                         enableReinitialize
                         initialValues={{
                             name: this.props.user,
+                            password: '',
                         }}
                         validationSchema={Yup.object({
                             name: Yup.string()
                                 .min(3, 'Must be at least 3 characters long')
                                 .max(15, 'Must not exceed 15 characters')
                                 .required('Required'),
+                            password: Yup.string().required('Required'),
                         })}
                         onSubmit={(values, { setSubmitting, resetForm }) => {
                             setTimeout(() => {
@@ -85,6 +87,12 @@ class Login extends Component {
                                     placeholder='Enter Username'
                                     onChange={this.props.handleLoginChange}
                                 />
+                                <CustomTextInput
+                                    label='Password'
+                                    name='password'
+                                    type='password'
+                                    placeholder='Enter Password'
+                                />
                                 <button
                                     type='submit'
                                     onClick={this.props.handleLoginSubmit}
@@ -103,6 +111,7 @@ class Login extends Component {
                         initialValues={{
                             username: this.props.user,
                             email: '',
+                            password: '',
                         }}
                         validationSchema={Yup.object({
                             username: Yup.string()
@@ -112,6 +121,7 @@ class Login extends Component {
                             email: Yup.string()
                                 .email('Invalid email address')
                                 .required('Required'),
+                            password: Yup.string().required('Required'),
                         })}
                         onSubmit={(values, { setSubmitting, resetForm }) => {
                             setTimeout(() => {
@@ -155,6 +165,12 @@ class Login extends Component {
                                     name='email'
                                     type='email'
                                     placeholder='New Email'
+                                />
+                                <CustomTextInput
+                                    label='Password'
+                                    name='password'
+                                    type='password'
+                                    placeholder='Enter Password'
                                 />
                                 <button
                                     type='submit'

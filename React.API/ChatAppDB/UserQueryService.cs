@@ -13,12 +13,7 @@ namespace React.API.ChatAppDB
 
             var conn = dbConnection.GetConnection();
 
-            using var cmd = new NpgsqlCommand("SELECT * FROM users WHERE username = @u;", conn);
-
-            {
-                cmd.Parameters.AddWithValue("u", username);
-                cmd.ExecuteNonQuery();
-            }
+            using var cmd = new NpgsqlCommand("SELECT * FROM users;", conn);
 
             using (var reader = cmd.ExecuteReader())
             {
@@ -30,7 +25,8 @@ namespace React.API.ChatAppDB
                         Id = reader.GetGuid(0),
                         Username = reader.GetString(1),
                         Email = reader.GetString(2),
-                        Created_At = reader.GetDateTime(3)
+                        Created_At = reader.GetDateTime(3),
+                        Password = reader.GetString(4),
                     };
 
                     return user;
@@ -49,10 +45,6 @@ namespace React.API.ChatAppDB
             var users = new List<User>();
 
             using var cmd = new NpgsqlCommand("SELECT * FROM users;", conn);
-
-            {
-                cmd.ExecuteNonQuery();
-            }
 
             using (var reader = cmd.ExecuteReader())
             {

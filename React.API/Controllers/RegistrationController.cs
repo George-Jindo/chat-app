@@ -16,16 +16,18 @@ namespace React.API.Controllers
 
             var username = registrationInput.Username;
             var email = registrationInput.Email;
+            var password = registrationInput.Password;
 
             var registrationQueryService = new RegistrationQueryService();
-            var users = registrationQueryService.CreateRegistration(username, email);
+            var users = registrationQueryService.CreateRegistration(username, email, password);
 
             Console.WriteLine("User created succesfully");
 
             return Ok(new RegistrationModel { 
                 UserID = Guid.NewGuid(), 
                 Username = username,
-                Email = email
+                Email = email,
+                Password = password
             });
         }
     }
@@ -36,11 +38,15 @@ namespace React.API.Controllers
         public string Username { get; set; }
 
         public string Email { get; set; }
+
+        public string Password { get; set; }
     }
 
     public class RegistrationInput
     {
         public string Username { get; set; }
         public string Email { get; set; }
+
+        public string Password { get; set; }
     }
 }
