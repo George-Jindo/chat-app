@@ -61,7 +61,7 @@ class Login extends Component {
                             setTimeout(() => {
                                 axios
                                     .post(
-                                        'https://localhost:5001/api/users',
+                                        `https://localhost:5001/api/users?=${this.props.user}`,
                                         values,
                                         null,
                                         2
