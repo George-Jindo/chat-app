@@ -14,19 +14,21 @@ namespace React.API.Controllers
     {
         [HttpPost]
 
-        public IActionResult PostRegistration([FromBody] AuthenticationInput authenticationInput)
+        public IActionResult CreateAuthentication([FromBody] AuthenticationInput authenticationInput)
         {
 
             var username = authenticationInput.Username;
+            var password = authenticationInput.Password;
+
 
             var authenticationQueryService = new UserQueryService();
-            var users = authenticationQueryService.CreateAuthentication(username);
+            var user = authenticationQueryService.AuthenticateUser(username, password);
 
             Console.WriteLine("User logged in succesfully");
 
             return Ok(new AuthenticationModel
             {
-                UserID = Guid.NewGuid(),
+                UserID = user.Id,
             });
         }
     }
@@ -40,5 +42,6 @@ namespace React.API.Controllers
     public class AuthenticationInput
     {
         public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

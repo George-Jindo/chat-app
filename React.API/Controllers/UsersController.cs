@@ -11,11 +11,11 @@ namespace React.API.Controllers
     {
         [HttpGet]
 
-        public IActionResult GetUser()
+        public IActionResult GetUser([FromQuery(Name = "username")] string username)
         {
             var userQueryService = new UserQueryService();
 
-            var users = userQueryService.QueryUsers();
+            var users = userQueryService.QueryUser(username);
 
             //users.ForEach(u => Console.WriteLine(u.Username));
 

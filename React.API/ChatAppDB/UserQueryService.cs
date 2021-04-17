@@ -7,7 +7,40 @@ namespace React.API.ChatAppDB
 {
     public class UserQueryService
     {
-        public List<User> QueryUsers(string username)
+        public User QueryUser(string username)
+        {
+            var dbConnection = new DbConnection();
+
+            var conn = dbConnection.GetConnection();
+
+            using var cmd = new NpgsqlCommand("SELECT * FROM users WHERE username = @u;", conn);
+
+            {
+                cmd.Parameters.AddWithValue("u", username);
+                cmd.ExecuteNonQuery();
+            }
+
+            using (var reader = cmd.ExecuteReader())
+            {
+                // looping through each row
+                while (reader.Read())
+                {
+                    var user = new User
+                    {
+                        Id = reader.GetGuid(0),
+                        Username = reader.GetString(1),
+                        Email = reader.GetString(2),
+                        Created_At = reader.GetDateTime(3)
+                    };
+
+                    return user;
+                }
+            }
+
+            return null;
+
+        }
+        public List<User> QueryUsers()
         {
             var dbConnection = new DbConnection();
 
@@ -15,10 +48,9 @@ namespace React.API.ChatAppDB
 
             var users = new List<User>();
 
-            using var cmd = new NpgsqlCommand("SELECT * FROM users WHERE username = @u;", conn);
+            using var cmd = new NpgsqlCommand("SELECT * FROM users;", conn);
 
             {
-                cmd.Parameters.AddWithValue("u", username);
                 cmd.ExecuteNonQuery();
             }
 
@@ -62,9 +94,18 @@ namespace React.API.ChatAppDB
 
 
 
-        internal object CreateAuthentication(string username)
+        public User AuthenticateUser(string username, string password)
         {
-            throw new NotImplementedException();
+            var user = QueryUser(username);
+
+            if (user.Password == password)
+            {
+                return user;
+            }
+            else
+            {
+                throw new Exception("login failed!");
+            }
         }
     }
 }
