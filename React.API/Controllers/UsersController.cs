@@ -15,7 +15,9 @@ namespace React.API.Controllers
         {
             var userQueryService = new UserQueryService();
 
-            var users = userQueryService.QueryUser(username);
+            var users = userQueryService.QueryUsers();
+
+            //var userList = userQueryService.QueryUsers();
 
             //users.ForEach(u => Console.WriteLine(u.Username));
 
